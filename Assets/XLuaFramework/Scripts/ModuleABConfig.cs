@@ -16,6 +16,11 @@ public class BundleInfo
     public string crc;
 
     /// <summary>
+    /// bundle大小
+    /// </summary>
+    public int size;
+
+    /// <summary>
     /// 这个bundle所包含的资源的路径列表
     /// </summary>
     public List<string> assets;

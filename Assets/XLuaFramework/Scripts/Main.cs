@@ -14,16 +14,31 @@ public class Main : MonoBehaviour
         ModuleConfig launchModule = new ModuleConfig()
         {
             moduleName = "Launch",
-            moduleVersion = "20210902121943",
-            moduleUrl = "http://192.168.0.7:8000"
+            moduleVersion = "20240219121943",
+            moduleUrl = "http://127.0.0.1:8080"
         };
 
-        bool result = await ModuleManager.Instance.Load(launchModule);
-
-        if (result == true)
+        ModuleConfig gameModule = new ModuleConfig()
         {
-            Debug.Log("Lua代码开始...");
-        }
+            moduleName = "Game",
+            moduleVersion = "20240219121943",
+            moduleUrl = "http://127.0.0.1:8080"
+        };
+
+        ModuleManager.Instance.ResiterModuleConfig(launchModule);
+        ModuleManager.Instance.ResiterModuleConfig(gameModule);
+
+        await ModuleManager.Instance.Load(launchModule.moduleName);
+        await ModuleManager.Instance.Load(gameModule.moduleName);
+
+        Debug.Log("Lua代码开始...");
+        AssetLoader.Instance.Clone("Launch", "Assets/GAssets/Launch/Sphere.prefab");
+        AssetLoader.Instance.Clone("Game", "Assets/GAssets/Game/Sphere1.prefab").transform.Translate(Vector3.down * 3, Space.World);
+    }
+
+    private void Update()
+    {
+        AssetLoader.Instance.Unload(AssetLoader.Instance.base2Assets);
     }
 
     /// <summary>
