@@ -75,13 +75,13 @@ namespace YXCell
         {
             if (typeof(T) == typeof(GameObject) || (!string.IsNullOrEmpty(assetPath) && assetPath.EndsWith(".prefab")))
             {
-                Debug.LogError("不可加载GameObject类型，请使用Clone接口, path: " + assetPath);
+                YXUtils.EditorLogError("不可加载GameObject类型，请使用Clone接口, path: " + assetPath);
                 return null;
             }
 
             if (gameObject == null)
             {
-                Debug.LogError("CreatAsset必须传递一个将要挂载的gameobject");
+                YXUtils.EditorLogError("CreatAsset必须传递一个将要挂载的gameobject");
                 return null;
             }
 
@@ -169,14 +169,14 @@ namespace YXCell
 
             if (assets == null)
             {
-                Debug.LogError(moduleName + "模块资源不存在");
+                YXUtils.EditorLogError(moduleName + "模块资源不存在");
                 return null;
             }
 
             AssetRef assetRef = assets.GetValueOrDefault(assetPath);
             if (assetRef == null)
             {
-                Debug.LogError($"模块{moduleName}内不存在{assetPath}");
+                YXUtils.EditorLogError($"模块{moduleName}内不存在{assetPath}");
                 return null;
             }
 

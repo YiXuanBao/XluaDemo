@@ -1,10 +1,8 @@
 using LitJson;
 using System.Collections.Generic;
 using System.IO;
-using Unity.Plastic.Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace YXCell
 {
@@ -122,7 +120,7 @@ namespace YXCell
         private static void BuildAssetBundle()
         {
 
-            Debug.Log("开始--->>>生成所有模块的AB包!");
+            YXUtils.EditorLogNormal("开始--->>>生成所有模块的AB包!");
 
             if (Directory.Exists(abOutputPath) == true)
             {
@@ -175,7 +173,7 @@ namespace YXCell
 
             AssetDatabase.Refresh();
 
-            Debug.Log("结束--->>>生成所有模块的AB包!");
+            YXUtils.EditorLogNormal("结束--->>>生成所有模块的AB包!");
 
             assetBundleBuildList = null;
             asset2bundle = null;
@@ -289,7 +287,7 @@ namespace YXCell
 
                 string[] dependencies = AssetDatabase.GetDependencies(asset);
 
-                //Debug.Log(asset + "    dependencies:" + LitJson.JsonMapper.ToJson(dependencies));
+                //YXUtils.EditorLogNormal(asset + "    dependencies:" + LitJson.JsonMapper.ToJson(dependencies));
 
                 List<string> assetList = new List<string>();
 

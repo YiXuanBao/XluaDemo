@@ -81,20 +81,6 @@ namespace YXCell
         /// </summary>
         /// <param name="message">The message to log.</param>
         /// <param name="detailed">Log detailed information?</param>
-        public static void EditorLogSafe(object message, bool detailed = false)
-        {
-            if (detailed)
-                Debug.Log($"<<color=#9BFF81>SAFE! {message}</color> | Frame: {Time.frameCount} | Delta: {Time.frameCount - lastFrameCounts[0]}>");
-            else
-                Debug.Log($"<<color=#9BFF81>SAFE! {message}</color> | Frame: {Time.frameCount}>");
-            lastFrameCounts[0] = Time.frameCount;
-        }
-
-        /// <summary>
-        /// Log a normal message to the console.
-        /// </summary>
-        /// <param name="message">The message to log.</param>
-        /// <param name="detailed">Log detailed information?</param>
         public static void EditorLogNormal(object message, bool detailed = false)
         {
             if (detailed)

@@ -29,13 +29,13 @@ namespace YXCell
 
             request.downloadHandler = new DownloadHandlerFile($"{updatePath}/{moduleConfig.moduleName}_temp.json");
 
-            Debug.Log($"{configUrl}下载到本地路径: {updatePath}");
+            YXUtils.EditorLogNormal($"{configUrl}下载到本地路径: {updatePath}");
 
             await request.SendWebRequest();
 
             if (string.IsNullOrEmpty(request.error) == false)
             {
-                Debug.LogError($"下载模块{moduleConfig.moduleName}的配置文件: {request.error}");
+                YXUtils.EditorLogError($"下载模块{moduleConfig.moduleName}的配置文件: {request.error}");
 
                 bool result = await ShowMessageBox($"网络异常", "继续下载", "退出游戏");
 
@@ -59,7 +59,7 @@ namespace YXCell
 
             long downloadSize = CaculateSize(downloadList);
 
-            Debug.Log($"下载大小: {downloadSize}");
+            //YXUtils.EditorLogNormal($"下载大小: {downloadSize}");
 
             if (downloadSize == 0)
             {
@@ -112,12 +112,12 @@ namespace YXCell
 
                 if (request.result == UnityWebRequest.Result.Success)
                 {
-                    Debug.Log($"下载资源: {bundleInfo.bundle_name}至{updatePath}/{bundleInfo.bundle_name}成功");
+                    YXUtils.EditorLogNormal($"下载资源: {bundleInfo.bundle_name}至{updatePath}/{bundleInfo.bundle_name}成功");
                     bundleList.RemoveAt(bundleList.Count - 1);
                 }
                 else
                 {
-                    Debug.LogError($"下载bundle {GetServerUrl(moduleConfig, bundleInfo.bundle_name)} 中断, {request.error}");
+                    YXUtils.EditorLogError($"下载bundle {GetServerUrl(moduleConfig, bundleInfo.bundle_name)} 中断, {request.error}");
                     break;
                 }
             }

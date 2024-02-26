@@ -33,7 +33,7 @@ namespace YXCell
             await ModuleManager.Instance.Load(launchModule.moduleName);
             await ModuleManager.Instance.Load(gameModule.moduleName);
 
-            Debug.Log("Lua代码开始...");
+            YXUtils.EditorLogNormal("Lua代码开始...");
             AssetLoader.Instance.Clone("Launch", "Assets/GAssets/Launch/Sphere.prefab");
             AssetLoader.Instance.Clone("Game", "Assets/GAssets/Game/Sphere1.prefab").transform.Translate(Vector3.down * 3, Space.World);
         }

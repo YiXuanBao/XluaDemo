@@ -106,7 +106,7 @@ namespace YXCell
 
             if (moduleABConfig == null)
             {
-                Debug.LogError("LoadBaseBundle...");
+                YXUtils.EditorLogError("LoadBaseBundle...");
                 return false;
             }
 
@@ -139,7 +139,7 @@ namespace YXCell
                 return false;
             }
 
-            Debug.Log($"Base{moduleName}模块包含的AB包总数量：{moduleABConfig.BundleArray.Count}");
+            YXUtils.EditorLogNormal($"Base{moduleName}模块包含的AB包总数量：{moduleABConfig.BundleArray.Count}");
 
             Dictionary<string, AssetRef> Path2AssetRef = AssetLoader.Instance.ConfigAssembly(moduleABConfig);
             AssetLoader.Instance.base2Assets.Add(moduleName, Path2AssetRef);
@@ -153,7 +153,7 @@ namespace YXCell
 
             if (moduleABConfig == null)
             {
-                Debug.LogError("LoadUpdateBundle...");
+                YXUtils.EditorLogError("LoadUpdateBundle...");
                 return false;
             }
 
@@ -183,11 +183,11 @@ namespace YXCell
 
             if (moduleABConfig == null)
             {
-                Debug.LogError("LoadUpdate");
+                YXUtils.EditorLogError("LoadUpdate");
                 return false;
             }
 
-            Debug.Log($"Update{moduleName}模块包含的AB包总数量：{moduleABConfig.BundleArray.Count}");
+            YXUtils.EditorLogNormal($"Update{moduleName}模块包含的AB包总数量：{moduleABConfig.BundleArray.Count}");
 
             Dictionary<string, AssetRef> Path2AssetRef = AssetLoader.Instance.ConfigAssembly(moduleABConfig);
             AssetLoader.Instance.update2Assets.Add(moduleName, Path2AssetRef);
