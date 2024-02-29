@@ -1,55 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using System.IO;
 using UnityEngine;
+using static XLua.LuaEnv;
 
 namespace YXCell
 {
-    public class Main : MonoBehaviour
+    public class Main : MonoSingleton<Main>
     {
-        public async void Awake()
+        public XLua.LuaEnv luaEnv { get; } = new XLua.LuaEnv();
+
+        protected async override void Awake()
         {
+            base.Awake();
+
             InitGlobal();
 
-            // Æô¶¯Ä£¿é
+            InitCustomLoader();
+
+            // ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
             ModuleConfig launchModule = new ModuleConfig()
             {
                 moduleName = "Launch",
                 moduleVersion = "20240219121943",
                 moduleUrl = "http://127.0.0.1:8080"
-            };
 
-            ModuleConfig gameModule = new ModuleConfig()
-            {
-                moduleName = "Game",
-                moduleVersion = "20240219121943",
-                moduleUrl = "http://127.0.0.1:8080"
             };
 
             ModuleManager.Instance.ResiterModuleConfig(launchModule);
-            ModuleManager.Instance.ResiterModuleConfig(gameModule);
 
             await ModuleManager.Instance.Load(launchModule.moduleName);
-            await ModuleManager.Instance.Load(gameModule.moduleName);
 
-            YXUtils.EditorLogNormal("Lua´úÂë¿ªÊ¼...");
-            AssetLoader.Instance.Clone("Launch", "Assets/GAssets/Launch/Sphere.prefab");
-            AssetLoader.Instance.Clone("Game", "Assets/GAssets/Game/Sphere1.prefab").transform.Translate(Vector3.down * 3, Space.World);
+            YXUtils.EditorLogNormal("Luaï¿½ï¿½ï¿½ë¿ªÊ¼...");
+
+            gameObject.AddComponent<MonoProxy>().BindScript("Launch", "Main");
         }
 
         private void Update()
         {
             AssetLoader.Instance.Unload(AssetLoader.Instance.base2Assets);
+            AssetLoader.Instance.Unload(AssetLoader.Instance.update2Assets);
         }
 
         /// <summary>
-        /// ³õÊ¼»¯È«¾Ö±äÁ¿
+        /// ï¿½ï¿½Ê¼ï¿½ï¿½È«ï¿½Ö±ï¿½ï¿½ï¿½
         /// </summary>
         private void InitGlobal()
         {
-            Instance = this;
-
             GlobalConfig.HotUpdate = false;
 
             GlobalConfig.BundleMode = false;
@@ -57,9 +52,34 @@ namespace YXCell
             DontDestroyOnLoad(gameObject);
         }
 
-        /// <summary>
-        /// Ö÷Mono¶ÔÏó
-        /// </summary>
-        public static Main Instance;
+        private void InitCustomLoader()
+        {
+            DirectoryInfo baseDir = new DirectoryInfo(Application.dataPath + "/GAssets");
+
+            DirectoryInfo[] Dirs = baseDir.GetDirectories();
+
+            foreach (DirectoryInfo moduleDir in Dirs)
+            {
+                string moduleName = moduleDir.Name;
+
+                CustomLoader loader = (ref string scriptPath) =>
+                {
+                    string assetPath = $"Assets/GAssets/{moduleName}/Src/{scriptPath.Trim()}.lua";
+                    TextAsset asset = AssetLoader.Instance.CreatAsset<TextAsset>("Launch", assetPath, Main.Instance.gameObject);
+
+                    if (asset != null)
+                    {
+                        string scriptstring = asset.text; 
+                        byte[] result = System.Text.Encoding.UTF8.GetBytes(scriptstring);
+                        return result;
+                    }
+
+                    return null;
+                };
+
+                luaEnv.AddLoader(loader);
+            }
+
+        }
     }
 }

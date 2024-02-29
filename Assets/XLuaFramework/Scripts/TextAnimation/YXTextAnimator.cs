@@ -37,7 +37,36 @@ namespace YXCell
                 {
                     YXUtils.EditorLogNormal(item.index);
                 }
+
+                YXUtils.InvokeActionUnlimited(
+                    0.1f, () =>
+                    {
+                        for (int i = 0; i < textData.charData.Length; i++)
+                        {
+                            var charData = textData.charData[i];
+                            for (int j = 0; j < 4; j++)
+                            {
+                                charData.vertices[j] = charData.vertices[j] + new Vector3(0, Mathf.Sin(Time.time * 2f + charData.vertices[j].x) * 20f, 0);
+                            }
+                        }
+
+                        ApplyTextData(textData);
+                    }, Time.fixedDeltaTime
+                    );
             });
+        }
+
+        public void ApplyTextData(YXTextData data)
+        {
+            for (int i = 0; i < data.charData.Length; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    textInfo.meshInfo[0].vertices[i * 4 + j] = data.charData[i].vertices[j];
+                    textInfo.meshInfo[0].colors32[i * 4 + j] = data.charData[i].colors32[j];
+                }
+            }
+            text.UpdateVertexData();
         }
 
         public void UpdateTextInfo()

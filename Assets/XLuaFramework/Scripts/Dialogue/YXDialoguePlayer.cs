@@ -30,11 +30,11 @@ namespace YXCell
         private YXTextAnimator textAnimator;
         private YXDialogueEditorNode curNode, curSentence;
         private List<YXDialogueEditorNode> curChoices;
-        private bool typewriterFinishExecuted = false, curSentenceLinkExecuted=false;
+        private bool curSentenceLinkExecuted = false;
 
         private void Start()
         {
-            textAnimator = contentText.GetComponent<YXTextAnimator>();
+            //textAnimator = contentText.GetComponent<YXTextAnimator>();
             contentButton.onClick.AddListener(OnContentButtonPressed);
             if (playOnStart)
                 Play();
@@ -50,79 +50,42 @@ namespace YXCell
 
         #region Public Methods
 
-        /// <summary>
-        /// Play the current dialogue asset.
-        /// </summary>
         public void Play()
         {
             if (asset == null) return;
             YXDialogueManager.curEditorAsset = asset;
             curNode = asset.editorNodes[0];
-            //choicePanel.SetState(GameObjectState.Inactive);
+            choicePanel.SetActive(false);
 
-            if(curChoices != null)
-                curChoices.Clear(); 
-            if (curNode.type!= YXDialogueEditorNodeType.Start)
+            if (curChoices != null)
+                curChoices.Clear();
+            if (curNode.type != YXDialogueEditorNodeType.Start)
             {
                 YXUtils.EditorLogError("YXDialoguePlayer: First node is not start. Please make sure there is a start node to begin with.");
             }
-            //panel.SetState(GameObjectState.Active);
+            panel.SetActive(true);
             StartPlay();
         }
-        /// <summary>
-        /// Play the given dialogue asset.
-        /// </summary>
+
         public void Play(YXDialogueAsset asset)
         {
             this.asset = asset;
             Play();
         }
 
-        /// <summary>
-        /// Continue the dialogue flow by one step. (e.g. clicking on the sentence text -> fast forward / go to next sentence)
-        /// </summary>
+
         public void SentenceNextStep()
         {
             OnContentButtonPressed();
         }
 
-        /// <summary>
-        /// Add listener to an event node according to its name.
-        /// </summary>
-        /// <param name="eventName"></param>
-        /// <param name="callback"></param>
-        public void AddListenerToEvent(string eventName, System.Action<float,float> callback)
-        {
-            bool isNew = true;
-            foreach (var item in asset.event_properties)
-            {
-                if (item.name.Equals(eventName))
-                {
-                    isNew = false;
-                    item.action += callback;
-                }
-            }
-            if (isNew)
-            {
-                YXDE_EventProperty e = new YXDE_EventProperty()
-                {
-                    name = eventName,
-                    action = new System.Action<float, float>((a, b) => { }),
-                };
-                asset.event_properties.Add(e);
-                e.action += callback;
-            }
-        }
         #endregion
 
         #region Private Methods
 
-        /// <summary>
-        /// When reached the last node
-        /// </summary>
         private void OnEndSequence()
         {
-            //panel.SetState(GameObjectState.Inactive);
+            panel.SetActive(false);
             onDialogueEnded.Invoke();
         }
         private void ExecuteNode(YXDialogueEditorNode node)
@@ -135,14 +98,15 @@ namespace YXCell
                         curSentenceLinkExecuted = false;
 
                     curSentence = node;
-                    typewriterFinishExecuted = false;
-                    //contentText.UpdateTextDirectly(node.info.content);
-                    //speakerText.UpdateTextDirectly(node.info.speaker);
-                   
+                    contentText.text = node.info.content;
+                    speakerText.text = node.info.speaker;
+
                     if (node.info.avatar != null)
                     {
                         speakerImage.sprite = Sprite.Create(node.info.avatar, new Rect(0, 0, node.info.avatar.width, node.info.avatar.height), Vector2.zero);
                     }
+                    GotoChoices(curSentence);
+                    ExecuteInstantNodes(curSentence);
                     break;
                 case YXDialogueEditorNodeType.Choice:
                     break;
@@ -235,64 +199,48 @@ namespace YXCell
             onDialogueStart.Invoke();
             ExecuteNode(curNode);
         }
-        private void OnTypewriterFinished()
-        {
-            if (!typewriterFinishExecuted)
-            {
-                typewriterFinishExecuted = true;
-                GotoChoices(curNode);
-                ExecuteInstantNodes(curNode);
-            }
-        }
+
         private void OnContentButtonPressed()
         {
             if (curSentence.linkedNodesID.Count == 0)
             {
                 OnEndSequence();
             }
-            if (!typewriterFinishExecuted)
+
+            if (!curSentenceLinkExecuted)
             {
-                //textAnimator.TypewriterFastForward();
-                OnTypewriterFinished();
-            }
-            else
-            {
-                if (!curSentenceLinkExecuted)
-                {
-                    curSentenceLinkExecuted = true;
-                    ExecuteLinkedNodesExclueInstant(curSentence);
-                }
+                curSentenceLinkExecuted = true;
+                ExecuteLinkedNodesExclueInstant(curSentence);
             }
         }
         private void OnChoiceButtonPressed(int id)
         {
-            //choicePanel.SetState(GameObjectState.Inactive);
+            choicePanel.SetActive(true);
             ExecuteLinkedNodes(curChoices[id]);
         }
         private void ExecuteChoices(List<YXDialogueEditorNode> choices)
         {
             curChoices = choices;
-            //choicePanel.SetState(choices.Count==0?GameObjectState.Inactive:GameObjectState.Active);
+            choicePanel.SetActive(choices.Count >= 0);
+
             foreach (var go in choiceObjects)
-                //YXUtils.SetActiveEfficiently(go, false);
+                go.SetActive(false);
+
             for (int i = 0; i < choices.Count; i++)
             {
-                //YXUtils.SetActiveEfficiently(choiceObjects[i], true);
-                
-                //choiceTexts[i].UpdateTextDirectly(choices[i].info.content);
+                choiceObjects[i].SetActive(true);
+
+                choiceTexts[i].text = choices[i].info.content;
 
                 int j = i;
-                //choiceButtons[i].RemoveAllListeners(YXButtonEventType.OnPressed);
-                //choiceButtons[i].AddListener( YXButtonEventType.OnPressed,() =>
-                //{
-                //    OnChoiceButtonPressed(j);
-                //});
+                choiceButtons[i].onClick.RemoveAllListeners();
+                choiceButtons[i].onClick.AddListener(() =>
+                {
+                    OnChoiceButtonPressed(j);
+                });
             }
         }
-        /// <summary>
-        /// Display choices after a sentence
-        /// </summary>
-        /// <param name="node"></param>
+
         private void GotoChoices(YXDialogueEditorNode node)
         {
             if (node.linkedNodesID.Count == 0) return;
@@ -307,6 +255,27 @@ namespace YXCell
             }
             ExecuteChoices(choices);
         }
+
+        private void ExecuteLinkedNodes(YXDialogueEditorNode node)
+        {
+            List<YXDialogueEditorNode> list = new List<YXDialogueEditorNode>();
+            foreach (var link in node.linkedNodes)
+            {
+                if (link.type == YXDialogueEditorNodeType.Set || link.type == YXDialogueEditorNodeType.Event)
+                {
+                    list.Insert(0, link);
+                }
+                else if (link.type != YXDialogueEditorNodeType.Choice)
+                {
+                    list.Add(link);
+                }
+            }
+            foreach (var link in list)
+            {
+                ExecuteNode(link);
+            }
+        }
+
         private void ExecuteInstantNodes(YXDialogueEditorNode node)
         {
             if (node.type != YXDialogueEditorNodeType.Sentence) return;
@@ -324,25 +293,7 @@ namespace YXCell
                 ExecuteNode(link);
             }
         }
-        private void ExecuteLinkedNodes(YXDialogueEditorNode node)
-        {
-            List<YXDialogueEditorNode> list = new List<YXDialogueEditorNode>();
-            foreach (var link in node.linkedNodes)
-            {
-                if(link.type == YXDialogueEditorNodeType.Set|| link.type == YXDialogueEditorNodeType.Event)
-                {
-                    list.Insert(0, link);
-                }
-                else if(link.type != YXDialogueEditorNodeType.Choice)
-                {
-                    list.Add(link);
-                }
-            }
-            foreach (var link in list)
-            {
-                ExecuteNode(link);
-            }
-        }
+
         private void ExecuteLinkedNodesExclueInstant(YXDialogueEditorNode node)
         {
             List<YXDialogueEditorNode> list = new List<YXDialogueEditorNode>();
@@ -350,7 +301,7 @@ namespace YXCell
             {
                 if (link.type == YXDialogueEditorNodeType.Set || link.type == YXDialogueEditorNodeType.Event)
                 {
-                    
+
                 }
                 else if (link.type != YXDialogueEditorNodeType.Choice)
                 {

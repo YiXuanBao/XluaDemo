@@ -9,43 +9,59 @@ namespace YXCell
         //外部赋值
         public Map map;
 
+        BinaryHeap<Node> openList;
+        List<Node> closeList;
+
+        /// <summary>
+        /// Start is called on the frame when a script is enabled just before
+        /// any of the Update methods is called the first time.
+        /// </summary>
+        void Start()
+        {
+            openList = new BinaryHeap<Node>();
+            closeList = new List<Node>();
+        }
+
         public void AStarPath(Node start, Node end)
         {
-            List<Node> openList = new List<Node>();
-            List<Node> closeList = new List<Node>();
             CalcNodeG(start);
             CalcNodeF(start, end);
 
-            openList.Add(start);
+            openList.Clear();
+            closeList.Clear();
+
+            openList.Enqueue(start);
 
             while (openList.Count > 0)
             {
-                Node node = FindCurEdgeMinF(openList);
-                openList.Remove(node);
+                Node node = openList.Dequeue(); //FindCurEdgeMinF(openList);
+                //openList.Remove(node);
                 closeList.Add(node);
+                node.isClose = true;
                 List<Node> edgeNodes = GetEdgeNodes(node, closeList);
                 foreach (Node item in edgeNodes)
                 {
-                    if (openList.Contains(item))
+                    int index = openList.GetIndex(item);
+                    if (index != -1)
                     {
                         float curG = PreCalcG(item, node);
                         if (curG < item.G)
                         {
                             item.UpdateParentAndG(node, curG);
+                            openList.BubbleUp(index);
                         }
                     }
                     item.SetParent(node);
                     CalcNodeG(item);
                     CalcNodeF(item, end);
-                    if (!openList.Contains(item))
-                        openList.Add(item);
+                    if (index == -1)
+                        openList.Enqueue(item);
                 }
-                if (openList.Contains(end))
+                if (openList.GetIndex(end) != -1)
                 {
                     break;
                 }
             }
-
         }
 
         //在openlist里找出F最小的Node
@@ -82,7 +98,7 @@ namespace YXCell
             if (leftCheck && upCheck)
             {
                 LeftUp = map.nodes[node.X - 1, node.Y + 1];
-                if (LeftUp != null && !LeftUp.isWall)
+                if (LeftUp != null && !LeftUp.isWall && !LeftUp.isClose)
                 {
                     edges.Add(LeftUp);
                 }
@@ -90,7 +106,7 @@ namespace YXCell
             if (upCheck)
             {
                 Up = map.nodes[node.X, node.Y + 1];
-                if (Up != null && !Up.isWall)
+                if (Up != null && !Up.isWall && !Up.isClose)
                 {
                     edges.Add(Up);
                 }
@@ -98,7 +114,7 @@ namespace YXCell
             if (rightCheck && upCheck)
             {
                 RightUp = map.nodes[node.X + 1, node.Y + 1];
-                if (RightUp != null && !RightUp.isWall)
+                if (RightUp != null && !RightUp.isWall && !RightUp.isClose)
                 {
                     edges.Add(RightUp);
                 }
@@ -106,7 +122,7 @@ namespace YXCell
             if (leftCheck)
             {
                 Left = map.nodes[node.X - 1, node.Y];
-                if (Left != null && !Left.isWall)
+                if (Left != null && !Left.isWall && !Left.isClose)
                 {
                     edges.Add(Left);
                 }
@@ -114,7 +130,7 @@ namespace YXCell
             if (rightCheck)
             {
                 Right = map.nodes[node.X + 1, node.Y];
-                if (Right != null && !Right.isWall)
+                if (Right != null && !Right.isWall && !Right.isClose)
                 {
                     edges.Add(Right);
                 }
@@ -122,7 +138,7 @@ namespace YXCell
             if (leftCheck && downCheck)
             {
                 LeftDown = map.nodes[node.X - 1, node.Y - 1];
-                if (LeftDown != null && !LeftDown.isWall)
+                if (LeftDown != null && !LeftDown.isWall && !LeftDown.isClose)
                 {
                     edges.Add(LeftDown);
                 }
@@ -130,7 +146,7 @@ namespace YXCell
             if (downCheck)
             {
                 Down = map.nodes[node.X, node.Y - 1];
-                if (Down != null && !Down.isWall)
+                if (Down != null && !Down.isWall && !Down.isClose)
                 {
                     edges.Add(Down);
                 }
@@ -138,19 +154,19 @@ namespace YXCell
             if (rightCheck && downCheck)
             {
                 RightDown = map.nodes[node.X + 1, node.Y - 1];
-                if (RightDown != null && !RightDown.isWall)
+                if (RightDown != null && !RightDown.isWall && !RightDown.isClose)
                 {
                     edges.Add(RightDown);
                 }
             }
 
-            foreach (Node item in close)
-            {
-                if (edges.Contains(item))
-                {
-                    edges.Remove(item);
-                }
-            }
+            // foreach (Node item in close)
+            // {
+            //     if (edges.Contains(item))
+            //     {
+            //         edges.Remove(item);
+            //     }
+            // }
 
             return edges;
 

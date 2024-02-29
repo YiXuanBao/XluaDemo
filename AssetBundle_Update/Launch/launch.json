@@ -1,33 +1,18 @@
 {
     "BundleArray": {
-        "gassets_launch": {
-            "bundle_name": "gassets_launch",
-            "crc": "9fdc13fc",
-            "size": 2063,
+        "gassets_launch_src": {
+            "bundle_name": "gassets_launch_src",
+            "crc": "c0f76dc0",
+            "size": 935,
             "assets": [
-                "Assets/GAssets/Launch/Sphere.prefab"
-            ]
-        },
-        "gassets_launch_mat1": {
-            "bundle_name": "gassets_launch_mat1",
-            "crc": "798c5d01",
-            "size": 25113,
-            "assets": [
-                "Assets/GAssets/Launch/Mat1/Red.mat"
+                "Assets/GAssets/Launch/Src/Main.lua"
             ]
         }
     },
     "AssetArray": [
         {
-            "asset_path": "Assets/GAssets/Launch/Sphere.prefab",
-            "bundle_name": "gassets_launch",
-            "dependencies": [
-                "gassets_launch_mat1"
-            ]
-        },
-        {
-            "asset_path": "Assets/GAssets/Launch/Mat1/Red.mat",
-            "bundle_name": "gassets_launch_mat1",
+            "asset_path": "Assets/GAssets/Launch/Src/Main.lua",
+            "bundle_name": "gassets_launch_src",
             "dependencies": []
         }
     ]

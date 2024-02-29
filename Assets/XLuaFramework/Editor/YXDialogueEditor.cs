@@ -573,9 +573,7 @@ namespace YXCell
             else if (node.type == YXDialogueEditorNodeType.Start)
             {
                 GUI.contentColor = new Color(1, 1, 1, 0.07f);
-                GUI.backgroundColor = Color.clear;
-                Rect iconRect = new Rect(node.rect.width / 2 - 27.5f, node.rect.height / 2 - 15, 55, 55);
-                GUI.Box(iconRect, "Start");
+                
                 GUI.backgroundColor = new Color(.8f, .8f, .8f);
                 GUI.contentColor = Color.white;
 
@@ -586,9 +584,7 @@ namespace YXCell
             else if (node.type == YXDialogueEditorNodeType.End)
             {
                 GUI.contentColor = new Color(1, 1, 1, 0.07f);
-                GUI.backgroundColor = Color.clear;
-                Rect iconRect = new Rect(node.rect.width / 2 - 27.5f, node.rect.height / 2 - 15, 55, 55);
-                GUI.Box(iconRect, "End");
+                
                 GUI.backgroundColor = new Color(.8f, .8f, .8f);
                 GUI.contentColor = Color.white;
 
@@ -615,9 +611,7 @@ namespace YXCell
             else if (node.type == YXDialogueEditorNodeType.Random)
             {
                 GUI.contentColor = new Color(1, 1, 1, 0.07f);
-                GUI.backgroundColor = Color.clear;
-                Rect iconRect = new Rect(node.rect.width / 2 - 27.5f, node.rect.height / 2 - 15, 55, 55);
-                GUI.Box(iconRect, "Random");
+
                 GUI.backgroundColor = new Color(.8f, .8f, .8f);
                 GUI.contentColor = Color.white;
 
@@ -628,9 +622,7 @@ namespace YXCell
             else if (node.type == YXDialogueEditorNodeType.Set)
             {
                 GUI.contentColor = new Color(1, 1, 1, .6f);
-                GUI.backgroundColor = Color.clear;
-                Rect iconRect = new Rect(node.rect.width / 2 - 8f, node.rect.height / 2 + 1, 16, 16);
-                GUI.Box(iconRect, "Set");
+
                 GUI.backgroundColor = new Color(.8f, .8f, .8f);
                 GUI.contentColor = Color.white;
 
@@ -639,7 +631,9 @@ namespace YXCell
                 GUILayout.EndVertical();
                 GUILayout.Space(2);
                 GUILayout.Label(node.int_property_name, node_centerStyle3);
-                GUILayout.Space(18);
+                GUILayout.Space(3);
+                GUILayout.Label("=", node_centerStyle2);
+                GUILayout.Space(3);
                 GUILayout.Label(node.int_property_value.ToString(), node_centerStyle2);
             }
             else if (node.type == YXDialogueEditorNodeType.If)
@@ -665,9 +659,7 @@ namespace YXCell
             Vector3 endPos = new Vector3(end.x, end.y + end.height / 2, 0);
             Vector3 startTan = startPos + Vector3.right * 50;
             Vector3 endTan = endPos + Vector3.left * 50;
-            Color shadowCol = new Color(1, 1, 1, 0.06f);
-            for (int i = 0; i < 3; i++) // Draw a shadow           
-                Handles.DrawBezier(startPos, endPos, startTan, endTan, shadowCol, null, (i + 1) * 5);
+            
             Handles.DrawBezier(startPos, endPos, startTan, endTan, Color.gray, null, 1);
         }
 
@@ -714,11 +706,5 @@ namespace YXCell
             result.Apply();
             return result;
         }
-    }
-
-    public enum YXDialogueEditorState
-    {
-        Normal,
-        Connecting
     }
 }

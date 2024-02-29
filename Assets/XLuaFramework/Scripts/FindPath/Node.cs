@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 namespace YXCell
 {
-    public class Node
+    public class Node : IComparable
     {
         public int X;
         public int Y;
@@ -12,6 +13,8 @@ namespace YXCell
         public float H = 0;
 
         public bool isWall; //是否障碍
+
+        public bool isClose; //是否加入close列表
 
         public Node parent;
         public Map map;
@@ -73,6 +76,7 @@ namespace YXCell
             G = 0;
             H = 0;
             isWall = false;
+            isClose = false;
             parent = null;
             nodeRender.material.SetColor("_Color", Color.white);
         }
@@ -82,6 +86,7 @@ namespace YXCell
             F = 0;
             G = 0;
             H = 0;
+            isClose = false;
             parent = null;
             if (!isWall)
                 nodeRender.material.SetColor("_Color", Color.white);
@@ -94,6 +99,7 @@ namespace YXCell
         }
         public void SetEndNode()
         {
+            if (isWall) return;
             map.ReFind();
             map.StartFindPath(map.player.GetCurNode(), this);
         }
@@ -101,6 +107,17 @@ namespace YXCell
         public NodeItem GetNodeItem()
         {
             return nodeItem;
+        }
+
+        public int CompareTo(object obj)
+        {
+            Node other = (Node)obj;
+            if (this.F < other.F)
+                return -1;
+            else if(this.F == other.F)
+                return 0;
+            else
+                return 1;
         }
     }
 }

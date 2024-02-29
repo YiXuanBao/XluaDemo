@@ -5,9 +5,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using XLua;
 
 namespace YXCell
 {
+    [LuaCallCSharp]
     public class YXUtils
     {
         private static int[] lastFrameCounts = new int[3];

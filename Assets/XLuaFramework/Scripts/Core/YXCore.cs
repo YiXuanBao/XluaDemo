@@ -11,7 +11,6 @@ namespace YXCell
     [RequireComponent(typeof(YXCommonTimer))]
     public sealed class YXCore : MonoSingleton<YXCore>
     {
-        public const string VERSION = "v1.2.5";
 
         public static Action Awake000 = new Action(EmptyAction), Awake100 = new Action(EmptyAction),
                               Start000 = new Action(EmptyAction), Start100 = new Action(EmptyAction), Start200 = new Action(EmptyAction),
@@ -20,18 +19,12 @@ namespace YXCell
                               LateTick000 = new Action(EmptyAction), LateTick100 = new Action(EmptyAction), LateTick200 = new Action(EmptyAction),
                               OnSceneLoaded000 = new Action(EmptyAction), OnSceneLoaded100 = new Action(EmptyAction);
 
-        //public static Dictionary<SKModule, Type> moduleTypeDict = new Dictionary<SKModule, Type>()
-        //{
-        //    {SKModule.CoreModule, null},
-        //    {SKModule.LocalizationModule, typeof(SKLocalizationManager)},
-        //};
-
         /// <summary>
         /// Initialize SKCell modules
         /// </summary>
         private void Initialize()
         {
-
+            YXUtils.EditorLogNormal("Core Initialize"); 
         }
 
         #region Unity Lifecycle
