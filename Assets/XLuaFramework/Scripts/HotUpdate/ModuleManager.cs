@@ -33,7 +33,6 @@ namespace YXCell
             return moduleDic.GetValueOrDefault(moduleName);
         }
 
-
         /// <summary>
         /// 加载一个模块 唯一对外API函数
         /// </summary>
@@ -48,41 +47,20 @@ namespace YXCell
                 return false;
             }
 
-            if (GlobalConfig.HotUpdate == false)
+            if (Main.Instance.globalConfig.HotUpdate == false)
             {
-                if (GlobalConfig.BundleMode == false)
+                if (Main.Instance.globalConfig.BundleMode == false)
                 {
                     return true;
                 }
                 else
                 {
-                    bool baseBundleOk = await LoadBaseBundle(moduleConfig.moduleName);
-
-                    if (baseBundleOk == false)
-                    {
-                        return false;
-                    }
-
                     return await LoadBase(moduleConfig.moduleName);
                 }
             }
             else
             {
                 await Downloader.Instance.Download(moduleConfig);
-
-                bool updateBundleOk = await LoadUpdateBundle(moduleConfig.moduleName);
-
-                if (updateBundleOk == false)
-                {
-                    return false;
-                }
-
-                bool baseBundleOk = await LoadBaseBundle(moduleConfig.moduleName);
-
-                if (baseBundleOk == false)
-                {
-                    return false;
-                }
 
                 bool updateOk = await LoadUpdate(moduleConfig.moduleName);
 
@@ -96,78 +74,24 @@ namespace YXCell
         }
 
         /// <summary>
-        /// 加载Base目录下Bundle
-        /// </summary>
-        /// <param name="moduleName"></param>
-        /// <returns></returns>
-        private async Task<bool> LoadBaseBundle(string moduleName)
-        {
-            ModuleABConfig moduleABConfig = await AssetLoader.Instance.LoadAssetBundleConfig(BaseOrUpdate.Base, moduleName, moduleName.ToLower() + ".json");
-
-            if (moduleABConfig == null)
-            {
-                YXUtils.EditorLogError("LoadBaseBundle...");
-                return false;
-            }
-
-            foreach (KeyValuePair<string, BundleInfo> kv in moduleABConfig.BundleArray)
-            {
-                string bundleName = kv.Key;
-
-                if (AssetLoader.Instance.name2BundleRef.ContainsKey(bundleName) == false)
-                {
-                    BundleInfo bundleInfo = kv.Value;
-
-                    AssetLoader.Instance.name2BundleRef[bundleName] = new BundleRef(bundleInfo, BaseOrUpdate.Base);
-                }
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// 加载随包资源
         /// </summary>
         /// <param name="moduleName"></param>
         /// <returns></returns>
         private async Task<bool> LoadBase(string moduleName)
         {
-            ModuleABConfig moduleABConfig = await AssetLoader.Instance.LoadAssetBundleConfig(BaseOrUpdate.Base, moduleName, moduleName.ToLower() + ".json");
+            ModuleABConfig moduleABConfig = await AssetLoader.Instance.LoadAssetBundleConfig(moduleName, moduleName.ToLower() + ".json");
 
             if (moduleABConfig == null)
             {
                 return false;
             }
 
-            YXUtils.EditorLogNormal($"Base{moduleName}模块包含的AB包总数量：{moduleABConfig.BundleArray.Count}");
+            YXUtils.EditorLogNormal($"Base {moduleName}模块包含的AB包总数量：{moduleABConfig.BundleArray.Count}");
 
             Dictionary<string, AssetRef> Path2AssetRef = AssetLoader.Instance.ConfigAssembly(moduleABConfig);
-            AssetLoader.Instance.base2Assets.Add(moduleName, Path2AssetRef);
-
-            return true;
-        }
-
-        private async Task<bool> LoadUpdateBundle(string moduleName)
-        {
-            ModuleABConfig moduleABConfig = await AssetLoader.Instance.LoadAssetBundleConfig(BaseOrUpdate.Update, moduleName, moduleName.ToLower() + ".json");
-
-            if (moduleABConfig == null)
-            {
-                YXUtils.EditorLogError("LoadUpdateBundle...");
-                return false;
-            }
-
-            foreach (KeyValuePair<string, BundleInfo> kv in moduleABConfig.BundleArray)
-            {
-                string bundleName = kv.Key;
-
-                if (AssetLoader.Instance.name2BundleRef.ContainsKey(bundleName) == false)
-                {
-                    BundleInfo bundleInfo = kv.Value;
-
-                    AssetLoader.Instance.name2BundleRef[bundleName] = new BundleRef(bundleInfo, BaseOrUpdate.Update);
-                }
-            }
+            YXUtils.EditorLogNormal(AssetLoader.Instance.base2Assets.Count);
+            AssetLoader.Instance.base2Assets.InsertOrUpdate(moduleName, Path2AssetRef);
 
             return true;
         }
@@ -179,7 +103,7 @@ namespace YXCell
         /// <returns></returns>
         private async Task<bool> LoadUpdate(string moduleName)
         {
-            ModuleABConfig moduleABConfig = await AssetLoader.Instance.LoadAssetBundleConfig(BaseOrUpdate.Update, moduleName, moduleName.ToLower() + ".json");
+            ModuleABConfig moduleABConfig = await AssetLoader.Instance.LoadAssetBundleConfig(moduleName, moduleName.ToLower() + ".json");
 
             if (moduleABConfig == null)
             {
@@ -187,10 +111,10 @@ namespace YXCell
                 return false;
             }
 
-            YXUtils.EditorLogNormal($"Update{moduleName}模块包含的AB包总数量：{moduleABConfig.BundleArray.Count}");
+            YXUtils.EditorLogNormal($"Update {moduleName}模块包含的AB包总数量：{moduleABConfig.BundleArray.Count}");
 
             Dictionary<string, AssetRef> Path2AssetRef = AssetLoader.Instance.ConfigAssembly(moduleABConfig);
-            AssetLoader.Instance.update2Assets.Add(moduleName, Path2AssetRef);
+            AssetLoader.Instance.update2Assets.InsertOrUpdate(moduleName, Path2AssetRef);
 
             return true;
         }

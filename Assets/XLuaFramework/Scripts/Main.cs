@@ -1,3 +1,4 @@
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using static XLua.LuaEnv;
@@ -6,6 +7,10 @@ namespace YXCell
 {
     public class Main : MonoSingleton<Main>
     {
+        public YXABConfig abConfig;
+
+        public GlobalConfig globalConfig;
+
         public XLua.LuaEnv luaEnv { get; } = new XLua.LuaEnv();
 
         protected async override void Awake()
@@ -16,28 +21,37 @@ namespace YXCell
 
             InitCustomLoader();
 
-            // ����ģ��
-            ModuleConfig launchModule = new ModuleConfig()
+            foreach (var moduleConfig in abConfig.modules)
             {
-                moduleName = "Launch",
-                moduleVersion = "20240219121943",
-                moduleUrl = "http://127.0.0.1:8080"
+                ModuleManager.Instance.ResiterModuleConfig(moduleConfig);
+            }
 
-            };
+            await ModuleManager.Instance.Load("Public");
+            await ModuleManager.Instance.Load("Launch");
 
-            ModuleManager.Instance.ResiterModuleConfig(launchModule);
-
-            await ModuleManager.Instance.Load(launchModule.moduleName);
-
-            YXUtils.EditorLogNormal("Lua���뿪ʼ...");
+            YXUtils.EditorLogNormal("Lua代码开始...");
 
             gameObject.AddComponent<MonoProxy>().BindScript("Launch", "Main");
+
+            var go = AssetLoader.Instance.Clone("Launch", "Assets/GAssets/Launch/Res/Cube.prefab");
         }
 
-        private void Update()
+        /// <summary>
+        /// Start is called on the frame when a script is enabled just before
+        /// any of the Update methods is called the first time.
+        /// </summary>
+        void Start()
         {
-            AssetLoader.Instance.Unload(AssetLoader.Instance.base2Assets);
-            AssetLoader.Instance.Unload(AssetLoader.Instance.update2Assets);
+            StartCoroutine(UnloadUnuseResource());
+        }
+
+        IEnumerator UnloadUnuseResource()
+        {
+            while (true)
+            {
+                AssetLoader.Instance.Unload();
+                yield return new WaitForEndOfFrame();
+            }
         }
 
         /// <summary>
@@ -45,11 +59,14 @@ namespace YXCell
         /// </summary>
         private void InitGlobal()
         {
-            GlobalConfig.HotUpdate = false;
-
-            GlobalConfig.BundleMode = false;
 
             DontDestroyOnLoad(gameObject);
+
+            abConfig = Resources.Load<YXABConfig>("ABConfig");
+
+            abConfig.modules.Sort();
+
+            globalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
         }
 
         private void InitCustomLoader()
@@ -69,7 +86,7 @@ namespace YXCell
 
                     if (asset != null)
                     {
-                        string scriptstring = asset.text; 
+                        string scriptstring = asset.text;
                         byte[] result = System.Text.Encoding.UTF8.GetBytes(scriptstring);
                         return result;
                     }

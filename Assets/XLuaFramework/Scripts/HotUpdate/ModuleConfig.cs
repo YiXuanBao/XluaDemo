@@ -1,17 +1,20 @@
-﻿namespace YXCell
+﻿using System;
+
+namespace YXCell
 {
-    public class ModuleConfig
+    [System.Serializable]
+    public class ModuleConfig : IComparable<ModuleConfig>
     {
         public string moduleName;
         public string moduleVersion;
-        public string moduleUrl;
 
-        public object DownloadUrl
+        public int order;
+
+        public bool isSub;
+
+        public int CompareTo(ModuleConfig other)
         {
-            get
-            {
-                return $"{moduleUrl}/{moduleName}/{moduleVersion}";
-            }
+            return order - other.order;
         }
     }
 }

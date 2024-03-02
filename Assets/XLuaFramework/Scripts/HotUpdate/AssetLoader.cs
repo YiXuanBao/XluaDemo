@@ -7,12 +7,6 @@ using UnityEngine.Networking;
 
 namespace YXCell
 {
-    public enum BaseOrUpdate
-    {
-        Base,
-        Update
-    }
-
     /// <summary>
     /// 模块资源加载器
     /// </summary>
@@ -28,17 +22,19 @@ namespace YXCell
         /// </summary>
         public Dictionary<string, Dictionary<string, AssetRef>> update2Assets;
 
-        /// <summary>
-        /// 记录所有的BundleRef对象
-        /// 键是bundle的名字
-        /// </summary>
-        public Dictionary<string, BundleRef> name2BundleRef;
+        public Dictionary<string, BundleRef> bundleCache;
 
         public AssetLoader()
         {
             base2Assets = new Dictionary<string, Dictionary<string, AssetRef>>();
             update2Assets = new Dictionary<string, Dictionary<string, AssetRef>>();
-            name2BundleRef = new Dictionary<string, BundleRef>();
+
+            bundleCache = new Dictionary<string, BundleRef>();
+        }
+
+        BundleRef GetBundleRef(string bundleName)
+        {
+            return bundleCache.GetValueOrDefault(bundleName, null);
         }
 
         #region 资源加载
@@ -112,7 +108,7 @@ namespace YXCell
         private AssetRef LoadAssetRef<T>(string moduleName, string assetPath) where T : UnityEngine.Object
         {
 #if UNITY_EDITOR
-            if (GlobalConfig.BundleMode == false)
+            if (Main.Instance.globalConfig.BundleMode == false)
             {
                 return LoadAssetRef_Editor<T>(moduleName, assetPath);
             }
@@ -158,14 +154,11 @@ namespace YXCell
         private AssetRef LoadAssetRef_Runtime<T>(string moduleName, string assetPath) where T : UnityEngine.Object
         {
             Dictionary<string, AssetRef> assets;
-            if (GlobalConfig.HotUpdate)
-            {
+
+            if (Main.Instance.globalConfig.HotUpdate)
                 assets = update2Assets.GetValueOrDefault(moduleName);
-            }
             else
-            {
                 assets = base2Assets.GetValueOrDefault(moduleName);
-            }
 
             if (assets == null)
             {
@@ -186,12 +179,19 @@ namespace YXCell
             }
 
             //加载依赖的bundleRef列表
-            foreach (BundleRef oneBundle in assetRef.dependencies)
+            foreach (string oneBundleName in assetRef.assetInfo.dependencies)
             {
+                BundleRef oneBundle = GetBundleRef(oneBundleName);
+
+                if (oneBundle == null)
+                {
+                    oneBundle = new BundleRef(oneBundleName);
+                    bundleCache.Add(oneBundleName, oneBundle);
+                }
+
                 if (oneBundle.bundle == null)
                 {
-                    string bundlePath = BundlePath(oneBundle.witch, moduleName, oneBundle.bundleInfo.bundle_name);
-
+                    string bundlePath = BundlePath(moduleName, oneBundle.bundleName);
                     oneBundle.bundle = AssetBundle.LoadFromFile(bundlePath);
                 }
 
@@ -203,12 +203,19 @@ namespace YXCell
                 oneBundle.children.Add(assetRef);
             }
 
+            string selfBundleName = assetRef.assetInfo.bundle_name;
             //加载自身bundle
-            BundleRef bundleRef = assetRef.bundleRef;
+            BundleRef bundleRef = GetBundleRef(selfBundleName); ;
+
+            if (bundleRef == null)
+            {
+                bundleRef = new BundleRef(selfBundleName);
+                bundleCache.Add(selfBundleName, bundleRef);
+            }
 
             if (bundleRef.bundle == null)
             {
-                string bundlePath = BundlePath(bundleRef.witch, moduleName, bundleRef.bundleInfo.bundle_name);
+                string bundlePath = BundlePath(moduleName, bundleRef.bundleName);
 
                 bundleRef.bundle = AssetBundle.LoadFromFile(bundlePath);
             }
@@ -240,82 +247,78 @@ namespace YXCell
         /// <param name="moduleName"></param>
         /// <param name="bundleName"></param>
         /// <returns></returns>
-        private string BundlePath(BaseOrUpdate baseOrUpdate, string moduleName, string bundleName)
+        private string BundlePath(string moduleName, string bundleName)
         {
-            if (baseOrUpdate == BaseOrUpdate.Update)
-            {
-                return $"{Application.persistentDataPath}/Bundles/{moduleName}/{bundleName}";
-            }
+            if (Main.Instance.globalConfig.HotUpdate)
+                return $"{Application.persistentDataPath}/Bundles/{bundleName}";
             else
-            {
-                return $"{Application.streamingAssetsPath}/{moduleName}/{bundleName}";
-            }
+                return $"{Application.streamingAssetsPath}/{bundleName}";
         }
 
         /// <summary>
         /// 全局卸载方法
         /// </summary>
         /// <param name="module2Assets"></param>
-        public void Unload(Dictionary<string, Dictionary<string, AssetRef>> module2Assets)
+        public void Unload()
         {
-            foreach (string moduleName in module2Assets.Keys)
-            {
-                Dictionary<string, AssetRef> path2AssetRef = module2Assets[moduleName];
+            // foreach (string moduleName in module2Assets.Keys)
+            // {
+            //     Dictionary<string, AssetRef> path2AssetRef = module2Assets[moduleName];
 
-                if (path2AssetRef == null)
-                {
-                    continue;
-                }
+            //     if (path2AssetRef == null)
+            //     {
+            //         continue;
+            //     }
 
-                bool needUnload = false;
+            //     bool needUnload = false;
 
-                foreach (AssetRef assetRef in path2AssetRef.Values)
-                {
-                    if (assetRef.children == null || assetRef.children.Count == 0)
-                    {
-                        continue;
-                    }
+            //     foreach (AssetRef assetRef in path2AssetRef.Values)
+            //     {
+            //         if (assetRef.children == null || assetRef.children.Count == 0)
+            //         {
+            //             continue;
+            //         }
 
-                    //检查依赖此资源的对象是否被销毁
-                    for (int i = assetRef.children.Count - 1; i >= 0; i--)
-                    {
-                        GameObject go = assetRef.children[i];
+            //         //检查依赖此资源的对象是否被销毁
+            //         for (int i = assetRef.children.Count - 1; i >= 0; i--)
+            //         {
+            //             GameObject go = assetRef.children[i];
 
-                        if (go == null)
-                        {
-                            assetRef.children.RemoveAt(i);
-                        }
-                    }
+            //             if (go == null)
+            //             {
+            //                 assetRef.children.RemoveAt(i);
+            //             }
+            //         }
 
-                    //没有gameobject依赖此资源,可以卸载了
-                    if (assetRef.children.Count == 0)
-                    {
-                        assetRef.asset = null;
-                        needUnload = true;
+            //         //没有gameobject依赖此资源,可以卸载了
+            //         if (assetRef.children.Count == 0)
+            //         {
+            //             assetRef.asset = null;
+            //             needUnload = true;
 
-                        //检查资源依赖的bundle是否可以卸载
-                        assetRef.bundleRef.children.Remove(assetRef);
-                        if (assetRef.bundleRef.children.Count == 0)
-                        {
-                            assetRef.bundleRef.bundle.Unload(true);
-                        }
+            //             //检查资源依赖的bundle是否可以卸载
+            //             assetRef.bundleRef.children.Remove(assetRef);
+            //             if (assetRef.bundleRef.children.Count == 0)
+            //             {
+            //                 assetRef.bundleRef.bundle.Unload(true);
+            //             }
 
-                        foreach (BundleRef bundleRef in assetRef.dependencies)
-                        {
-                            bundleRef.children.Remove(assetRef);
-                            if (bundleRef.children.Count == 0)
-                            {
-                                bundleRef.bundle.Unload(true);
-                            }
-                        }
-                    }
-                }
+            //             foreach (BundleRef bundleRef in assetRef.dependencies)
+            //             {
+            //                 bundleRef.children.Remove(assetRef);
+            //                 if (bundleRef.children.Count == 0)
+            //                 {
+            //                     bundleRef.bundle.Unload(true);
+            //                 }
+            //             }
+            //         }
+            //     }
 
-                if (needUnload)
-                {
-                    Resources.UnloadUnusedAssets();
-                }
-            }
+            //     if (needUnload)
+            //     {
+            //         Resources.UnloadUnusedAssets();
+            //     }
+            // }
         }
         #endregion
 
@@ -330,27 +333,15 @@ namespace YXCell
 
                 AssetRef assetRef = new AssetRef(assetInfo);
 
-                assetRef.bundleRef = name2BundleRef[assetInfo.bundle_name];
-
-                int count = assetInfo.dependencies.Count;
-                assetRef.dependencies = new BundleRef[count];
-
-                for (int index = 0; index < count; index++)
-                {
-                    string bundleName = assetInfo.dependencies[index];
-
-                    assetRef.dependencies[index] = name2BundleRef[bundleName];
-                }
-
                 Path2AssetRef.Add(assetInfo.asset_path, assetRef);
             }
 
             return Path2AssetRef;
         }
 
-        public async Task<ModuleABConfig> LoadAssetBundleConfig(BaseOrUpdate baseOrUpdate, string moduleName, string bundleConfigName)
+        public async Task<ModuleABConfig> LoadAssetBundleConfig(string moduleName, string bundleConfigName)
         {
-            string url = BundlePath(baseOrUpdate, moduleName, bundleConfigName);
+            string url = BundlePath(moduleName, bundleConfigName);
 
             UnityWebRequest request = UnityWebRequest.Get(url);
 

@@ -1,6 +1,8 @@
 using LitJson;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -36,6 +38,33 @@ namespace YXCell
         /// </summary>
         public static Dictionary<string, string> asset2bundle;
 
+        [MenuItem("ABEditor/MoveABToDataPath")]
+        public static void MoveABToDataPath()
+        {
+            YXUtils.EditorLogNormal("MoveABToDataPath开始");
+            abOutputPath = Application.streamingAssetsPath;
+            DirectoryInfo rootDir = new DirectoryInfo(abOutputPath);
+            FileInfo[] files = rootDir.GetFiles("*", SearchOption.TopDirectoryOnly);
+
+            string targetPath = $"{Application.persistentDataPath}/Bundles";
+
+            if (Directory.Exists(targetPath))
+            {
+                Directory.Delete(targetPath, true);
+            }
+
+            Directory.CreateDirectory(targetPath);
+
+            foreach (FileInfo fi in files)
+            {
+                if (fi.Name.EndsWith(".meta")) continue;
+                fi.CopyTo($"{targetPath}/{fi.Name}");
+            }
+            abOutputPath = null;
+
+            YXUtils.EditorLogNormal("MoveABToDataPath完成");
+        }
+
         /// <summary>
         /// 打版本Bundle
         /// </summary>
@@ -61,41 +90,40 @@ namespace YXCell
 
             string updateABPath = abOutputPath;
 
-            DirectoryInfo baseDir = new DirectoryInfo(baseABPath);
+            DirectoryInfo rootDir = new DirectoryInfo(rootPath);
+            DirectoryInfo[] Dirs = rootDir.GetDirectories();
 
-            DirectoryInfo[] dirs = baseDir.GetDirectories();
-
-            foreach (DirectoryInfo moduleDir in dirs)
+            foreach (DirectoryInfo moduleDir in Dirs)
             {
                 string moduleName = moduleDir.Name;
 
-                ModuleABConfig baseABConfig = LoadABConfig($"{baseABPath}/{moduleName}/{moduleName.ToLower()}.json");
-
-                ModuleABConfig updateABConfig = LoadABConfig($"{updateABPath}/{moduleName}/{moduleName.ToLower()}.json");
+                ModuleABConfig baseABConfig = LoadABConfig($"{baseABPath}/{moduleName.ToLower()}.json");
+            
+                ModuleABConfig updateABConfig = LoadABConfig($"{updateABPath}/{moduleName.ToLower()}.json");
 
                 List<BundleInfo> removeList = Caculate(baseABConfig, updateABConfig);
 
                 foreach (BundleInfo bundleInfo in removeList)
                 {
-                    string filePath = $"{updateABPath}/{moduleName}/{bundleInfo.bundle_name}";
+                    string filePath = $"{updateABPath}/{bundleInfo.bundle_name}";
 
                     File.Delete(filePath);
 
                     updateABConfig.BundleArray.Remove(bundleInfo.bundle_name);
                 }
 
-                string jsonPath = $"{updateABPath}/{moduleName}/{moduleName.ToLower()}.json";
+                // string jsonPath = $"{updateABPath}/{moduleName.ToLower()}.json";
 
-                if (File.Exists(jsonPath) == true)
-                {
-                    File.Delete(jsonPath);
-                }
+                // if (File.Exists(jsonPath) == true)
+                // {
+                //     File.Delete(jsonPath);
+                // }
 
-                File.Create(jsonPath).Dispose();
+                // File.Create(jsonPath).Dispose();
 
-                string jsonData = JsonMapper.ToJson(updateABConfig);
+                // string jsonData = JsonMapper.ToJson(updateABConfig);
 
-                File.WriteAllText(jsonPath, YXUtils.ConvertJsonString(jsonData));
+                // File.WriteAllText(jsonPath, YXUtils.ConvertJsonString(jsonData));
             }
 
             abOutputPath = null;
@@ -119,57 +147,69 @@ namespace YXCell
         /// </summary>
         private static void BuildAssetBundle()
         {
-
             YXUtils.EditorLogNormal("开始--->>>生成所有模块的AB包!");
-
-            if (Directory.Exists(abOutputPath) == true)
-            {
-                Directory.Delete(abOutputPath, true);
-            }
 
             assetBundleBuildList = new List<AssetBundleBuild>();
             asset2Dependencies = new Dictionary<string, List<string>>();
             asset2bundle = new Dictionary<string, string>();
 
+            Dictionary<string, string> totalAsset2Bundle = new Dictionary<string, string>();
+            Dictionary<string, Dictionary<string, string>> moduleAsset2BundleDict = new Dictionary<string, Dictionary<string, string>>();
+
+            List<AssetBundleBuild> totalBundleBuildList = new List<AssetBundleBuild>();
+            Dictionary<string, List<AssetBundleBuild>> moduleBundlesDict = new Dictionary<string, List<AssetBundleBuild>>();
+
             // 遍历所有模块，针对所有模块都分别打包
-
             DirectoryInfo rootDir = new DirectoryInfo(rootPath);
-
             DirectoryInfo[] Dirs = rootDir.GetDirectories();
 
             foreach (DirectoryInfo moduleDir in Dirs)
             {
-                string moduleName = moduleDir.Name;
-
                 assetBundleBuildList.Clear();
-
                 asset2bundle.Clear();
 
-                asset2Dependencies.Clear();
-
                 // 开始给这个模块生成AB包文件
-
                 ScanChildDireations(moduleDir);
 
-                string moduleOutputPath = $"{abOutputPath}/{moduleName}";
-
-                if (Directory.Exists(moduleOutputPath) == true)
+                foreach (var kv in asset2bundle)
                 {
-                    Directory.Delete(moduleOutputPath, true);
+                    totalAsset2Bundle.Add(kv.Key, kv.Value);
                 }
+                moduleAsset2BundleDict.Add(moduleDir.Name, new Dictionary<string, string>(asset2bundle));
 
-                Directory.CreateDirectory(moduleOutputPath);
-
-                BuildPipeline.BuildAssetBundles(moduleOutputPath, assetBundleBuildList.ToArray(), BuildAssetBundleOptions.None, EditorUserBuildSettings.activeBuildTarget);
-
-                CalculateDependencies(asset2bundle);
-
-                SaveModuleABConfig(moduleName, asset2bundle, assetBundleBuildList);
-
-                DeleteManifest(moduleOutputPath);
-
-                File.Delete($"{moduleOutputPath}/{moduleName}");
+                totalBundleBuildList.AddRange(assetBundleBuildList);
+                moduleBundlesDict.Add(moduleDir.Name, new List<AssetBundleBuild>(assetBundleBuildList));
             }
+
+            //生成ab包
+            if (Directory.Exists(abOutputPath) == true)
+            {
+                Directory.Delete(abOutputPath, true);
+            }
+
+            Directory.CreateDirectory(abOutputPath);
+
+            BuildPipeline.BuildAssetBundles(abOutputPath, totalBundleBuildList.ToArray(), BuildAssetBundleOptions.None, EditorUserBuildSettings.activeBuildTarget);
+
+            //生成每个模块的依赖配置
+            foreach (DirectoryInfo moduleDir in Dirs)
+            {
+                string moduleName = moduleDir.Name;
+                
+                asset2Dependencies.Clear();
+
+                Dictionary<string, string> moduleAsset = moduleAsset2BundleDict[moduleName];
+                List<AssetBundleBuild> moduleBundleList = moduleBundlesDict[moduleName];
+
+                CalculateDependencies(moduleAsset, totalAsset2Bundle);
+
+                SaveModuleABConfig(moduleName, moduleAsset, moduleBundleList);
+            }
+
+            DeleteManifest();
+
+            string outputDirName = abOutputPath.Substring(abOutputPath.LastIndexOf('/') + 1);
+            File.Delete( $"{abOutputPath}/{outputDirName}");
 
             AssetDatabase.Refresh();
 
@@ -184,9 +224,9 @@ namespace YXCell
         /// 删除生成的Manifest文件
         /// </summary>
         /// <param name="moduleOutputPath"></param>
-        private static void DeleteManifest(string moduleOutputPath)
+        private static void DeleteManifest()
         {
-            FileInfo[] files = new DirectoryInfo(moduleOutputPath).GetFiles();
+            FileInfo[] files = new DirectoryInfo(abOutputPath).GetFiles();
 
             foreach (FileInfo fileInfo in files)
             {
@@ -278,12 +318,12 @@ namespace YXCell
         /// <summary>
         /// 计算每个资源所依赖的ab包文件列表
         /// </summary>
-        private static void CalculateDependencies(Dictionary<string, string> assetTobundle)
+        private static void CalculateDependencies(Dictionary<string, string> moduleAsset2Bundle, Dictionary<string, string> totalAsset2Bundle)
         {
-            foreach (string asset in assetTobundle.Keys)
+            foreach (string asset in moduleAsset2Bundle.Keys)
             {
                 // 这个资源自己所在的bundle
-                string assetBundle = assetTobundle[asset];
+                string assetBundle = moduleAsset2Bundle[asset];
 
                 string[] dependencies = AssetDatabase.GetDependencies(asset);
 
@@ -310,7 +350,7 @@ namespace YXCell
 
                     foreach (string oneAsset in assetList)
                     {
-                        bool result = assetTobundle.TryGetValue(oneAsset, out string bundle);
+                        bool result = totalAsset2Bundle.TryGetValue(oneAsset, out string bundle);
 
                         if (result == true)
                         {
@@ -351,7 +391,7 @@ namespace YXCell
 
                 // 计算一个bundle文件的CRC散列码
 
-                string abFilePath = abOutputPath + "/" + moduleName + "/" + bundleInfo.bundle_name;
+                string abFilePath = abOutputPath + "/" + bundleInfo.bundle_name;
 
                 using (FileStream stream = File.OpenRead(abFilePath))
                 {
@@ -395,7 +435,7 @@ namespace YXCell
 
             string moduleConfigName = moduleName.ToLower() + ".json";
 
-            string jsonPath = abOutputPath + "/" + moduleName + "/" + moduleConfigName;
+            string jsonPath = abOutputPath + "/" + moduleConfigName;
 
             if (File.Exists(jsonPath) == true)
             {
@@ -412,7 +452,6 @@ namespace YXCell
         private static ModuleABConfig LoadABConfig(string abConfigPath)
         {
             string text = File.ReadAllText(abConfigPath);
-
             return JsonMapper.ToObject<ModuleABConfig>(text);
         }
 

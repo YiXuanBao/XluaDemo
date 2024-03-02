@@ -148,7 +148,6 @@ namespace YXCell
                     if (s[i + 1] == '/')
                     {
                         curAnim.endIndex = i - 1 - nullCount;
-                        Debug.Log(nullCount + "\t" + curAnim.startIndex + "\t" + curAnim.endIndex);
                         anims.Add(curAnim);
                         curAnim = null;
                         while (s[i] != '>') { nullCount++; i++; }

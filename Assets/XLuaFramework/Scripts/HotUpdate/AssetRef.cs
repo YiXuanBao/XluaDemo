@@ -6,10 +6,6 @@ namespace YXCell
     {
         public AssetInfo assetInfo;
 
-        public BundleRef bundleRef;
-
-        public BundleRef[] dependencies;
-
         /// <summary>
         /// 从bundle文件中提取出来的资源对象信息
         /// </summary>

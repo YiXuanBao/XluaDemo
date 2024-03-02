@@ -21,7 +21,7 @@ namespace YXCell
         /// <param name="moduleConfig">模块的配置对象</param>
         public async Task Download(ModuleConfig moduleConfig)
         {
-            string updatePath = GetUpdatePath(moduleConfig.moduleName);
+            string updatePath = GetUpdatePath();
 
             string configUrl = GetServerUrl(moduleConfig, moduleConfig.moduleName.ToLower() + ".json");
 
@@ -104,7 +104,7 @@ namespace YXCell
 
                 UnityWebRequest request = UnityWebRequest.Get(GetServerUrl(moduleConfig, bundleInfo.bundle_name));
 
-                string updatePath = GetUpdatePath(moduleConfig.moduleName);
+                string updatePath = GetUpdatePath();
 
                 request.downloadHandler = new DownloadHandlerFile($"{updatePath}/{bundleInfo.bundle_name}");
 
@@ -141,14 +141,14 @@ namespace YXCell
 
         private async Task<Tuple<List<BundleInfo>, BundleInfo[]>> GetDownloadList(string moduleName)
         {
-            ModuleABConfig serverConfig = await AssetLoader.Instance.LoadAssetBundleConfig(BaseOrUpdate.Update, moduleName, moduleName.ToLower() + "_temp.json");
+            ModuleABConfig serverConfig = await AssetLoader.Instance.LoadAssetBundleConfig(moduleName, moduleName.ToLower() + "_temp.json");
 
             if (serverConfig == null)
             {
                 return null;
             }
 
-            ModuleABConfig localConfig = await AssetLoader.Instance.LoadAssetBundleConfig(BaseOrUpdate.Update, moduleName, moduleName.ToLower() + ".json");
+            ModuleABConfig localConfig = await AssetLoader.Instance.LoadAssetBundleConfig(moduleName, moduleName.ToLower() + ".json");
 
             Tuple<List<BundleInfo>, BundleInfo[]> result = CaculateDiff(localConfig, serverConfig);
 
@@ -198,7 +198,7 @@ namespace YXCell
         {
             string moduleName = moduleConfig.moduleName;
 
-            string updatePath = GetUpdatePath(moduleName);
+            string updatePath = GetUpdatePath();
 
             for (int i = removeList.Length - 1; i >= 0; i--)
             {
@@ -226,9 +226,9 @@ namespace YXCell
         /// </summary>
         /// <param name="moduleName"></param>
         /// <returns></returns>
-        private string GetUpdatePath(string moduleName)
+        private string GetUpdatePath()
         {
-            return $"{Application.persistentDataPath}/Bundles/{moduleName}";
+            return $"{Application.persistentDataPath}/Bundles";
         }
 
         /// <summary>
@@ -240,11 +240,11 @@ namespace YXCell
         private string GetServerUrl(ModuleConfig moduleConfig, string fileName)
         {
 #if UNITY_ANDROID
-        return $"{moduleConfig.DownloadUrl}/Android/{fileName}";
+        return $"{Main.Instance.globalConfig.UpdateServerUrl}/{moduleConfig.moduleName}/{moduleConfig.moduleVersion}/Android/{fileName}";
 #elif UNITY_IOS
-        return $"{moduleConfig.DownloadUrl}/IOS/{fileName}";
+        return $"{Main.Instance.globalConfig.UpdateServerUrl}/{moduleConfig.moduleName}/{moduleConfig.moduleVersion}/IOS/{fileName}";
 #elif UNITY_STANDALONE_WIN
-            return $"{moduleConfig.DownloadUrl}/StandaloneWindows64/{fileName}";
+            return $"{Main.Instance.globalConfig.UpdateServerUrl}/{moduleConfig.moduleName}/{moduleConfig.moduleVersion}/StandaloneWindows64/{fileName}";
 #endif
         }
 
