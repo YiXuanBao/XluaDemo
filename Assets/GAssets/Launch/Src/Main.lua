@@ -7,7 +7,7 @@ end
 function Main:Start()
     print('Start', self.MonoProxy.gameObject.name)
     CS.UnityEngine.GameObject("1")
-    CS.YXUtils.EditorLogNormal("111")
+    CS.YXCell.YXUtils.EditorLogNormal("111")
 end
 
 function Main:OnDestroy()

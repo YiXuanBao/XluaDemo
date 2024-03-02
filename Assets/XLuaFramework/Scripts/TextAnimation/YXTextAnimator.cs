@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
@@ -29,31 +30,57 @@ namespace YXCell
         {
             YXUtils.InvokeAction(0.1f, () =>
             {
-                ParseText();
-                ApplyParsedText();
+                if (useInlineEffects)
+                {
+                    ParseText();
+                    ApplyParsedText();
+                }
                 UpdateTextInfo();
 
-                foreach (var item in textData.charData)
-                {
-                    YXUtils.EditorLogNormal(item.index);
-                }
+                // foreach (var item in textData.charData)
+                // {
+                //     YXUtils.EditorLogNormal(item.index);
+                // }
 
                 YXUtils.InvokeActionUnlimited(
                     0.1f, () =>
                     {
-                        for (int i = 0; i < textData.charData.Length; i++)
-                        {
-                            var charData = textData.charData[i];
-                            for (int j = 0; j < 4; j++)
-                            {
-                                charData.vertices[j] = charData.vertices[j] + new Vector3(0, Mathf.Sin(Time.time * 2f + charData.vertices[j].x) * 20f, 0);
-                            }
-                        }
-
-                        ApplyTextData(textData);
-                    }, Time.fixedDeltaTime
-                    );
+                        PlayEffectS();
+                    }, Time.fixedDeltaTime);
             });
+        }
+
+        private void PlayEffectS()
+        {
+            for (int i = 0; i < anims.Count; i++)
+            {
+                PlayEffect(anims[i]);
+            }
+        }
+
+        private void PlayEffect(YXTextAnimSemantics anim)
+        {
+            switch(anim.typedef)
+            {
+                case "test":
+                    TestAnim(anim.startIndex, anim.endIndex, anim.args[0]);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        void TestAnim(int startIndex, int endIndex, float tense)
+        {
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                var charData = textData.charData[i];
+                for (int j = 0; j < 4; j++)
+                {
+                    charData.vertices[j] = charData.vertices[j] + new Vector3(0, Mathf.Sin(Time.time * 2f + charData.vertices[j].x) * tense, 0);
+                }
+            }
+            ApplyTextData(textData);
         }
 
         public void ApplyTextData(YXTextData data)
@@ -121,7 +148,7 @@ namespace YXCell
                     if (s[i + 1] == '/')
                     {
                         curAnim.endIndex = i - 1 - nullCount;
-                        //submit anim
+                        Debug.Log(nullCount + "\t" + curAnim.startIndex + "\t" + curAnim.endIndex);
                         anims.Add(curAnim);
                         curAnim = null;
                         while (s[i] != '>') { nullCount++; i++; }
@@ -132,9 +159,9 @@ namespace YXCell
                         curAnim = new YXTextAnimSemantics();
                         int l = 1;
                         while (i + l < s.Length && (s[i + l] != '>' && s[i + l] != '(')) l++;
-                        curAnim.typedef = s.Substring(i + 1, l - 1); //parse type
+                        curAnim.typedef = s.Substring(i + 1, l - 1);
 
-                        if (s[i + l] == '(') //parse args
+                        if (s[i + l] == '(')
                         {
                             int m = 1, n = 1;
                             int curStart = i + l + m;
@@ -163,11 +190,9 @@ namespace YXCell
                             curAnim.startIndex = i - nullCount;
                         }
                     }
-
                 }
             }
 
-            //Second pass: remove markers
             StringBuilder sb = new StringBuilder();
             bool excl = false;
             for (int i = 0; i < s.Length; i++)
