@@ -62,11 +62,11 @@ namespace YXCell
 
             DontDestroyOnLoad(gameObject);
 
-            abConfig = Resources.Load<YXABConfig>("ABConfig");
+            abConfig = Resources.Load<YXABConfig>("Data/ABConfig");
 
             abConfig.modules.Sort();
 
-            globalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
+            globalConfig = Resources.Load<GlobalConfig>("Data/GlobalConfig");
         }
 
         private void InitCustomLoader()
