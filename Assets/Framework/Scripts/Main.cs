@@ -1,7 +1,6 @@
 using System.Collections;
 using System.IO;
 using UnityEngine;
-using static XLua.LuaEnv;
 
 namespace YXCell
 {
@@ -11,15 +10,11 @@ namespace YXCell
 
         public GlobalConfig globalConfig;
 
-        public XLua.LuaEnv luaEnv { get; } = new XLua.LuaEnv();
-
         protected async override void Awake()
         {
             base.Awake();
 
             InitGlobal();
-
-            InitCustomLoader();
 
             foreach (var moduleConfig in abConfig.modules)
             {
@@ -29,9 +24,7 @@ namespace YXCell
             await ModuleManager.Instance.Load("Public");
             await ModuleManager.Instance.Load("Launch");
 
-            YXUtils.EditorLogNormal("Lua代码开始...");
-
-            gameObject.AddComponent<MonoProxy>().BindScript("Launch", "Main");
+            YXUtils.EditorLogNormal("代码开始...");
 
             var go = AssetLoader.Instance.Clone("Launch", "Assets/GAssets/Launch/Res/Cube.prefab");
         }
@@ -67,36 +60,6 @@ namespace YXCell
             abConfig.modules.Sort();
 
             globalConfig = Resources.Load<GlobalConfig>("Data/GlobalConfig");
-        }
-
-        private void InitCustomLoader()
-        {
-            DirectoryInfo baseDir = new DirectoryInfo(Application.dataPath + "/GAssets");
-
-            DirectoryInfo[] Dirs = baseDir.GetDirectories();
-
-            foreach (DirectoryInfo moduleDir in Dirs)
-            {
-                string moduleName = moduleDir.Name;
-
-                CustomLoader loader = (ref string scriptPath) =>
-                {
-                    string assetPath = $"Assets/GAssets/{moduleName}/Src/{scriptPath.Trim()}.lua";
-                    TextAsset asset = AssetLoader.Instance.CreatAsset<TextAsset>("Launch", assetPath, Main.Instance.gameObject);
-
-                    if (asset != null)
-                    {
-                        string scriptstring = asset.text;
-                        byte[] result = System.Text.Encoding.UTF8.GetBytes(scriptstring);
-                        return result;
-                    }
-
-                    return null;
-                };
-
-                luaEnv.AddLoader(loader);
-            }
-
         }
     }
 }
