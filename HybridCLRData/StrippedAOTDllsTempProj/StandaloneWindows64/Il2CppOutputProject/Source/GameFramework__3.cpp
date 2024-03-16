@@ -8936,7 +8936,7 @@ IL_0006:
 		ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_4 = ((FileSystemStream_tD429C3A780CB077AF873EC694AA42CA450A5292C_StaticFields*)il2cpp_codegen_static_fields_for(FileSystemStream_tD429C3A780CB077AF873EC694AA42CA450A5292C_il2cpp_TypeInfo_var))->___s_CachedBytes_1;
 		int32_t L_5 = V_0;
 		NullCheck(L_3);
-		VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(34 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_3, L_4, 0, L_5);
+		VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(35 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_3, L_4, 0, L_5);
 	}
 
 IL_0017:
@@ -9078,7 +9078,7 @@ IL_002e:
 	{
 		NullCheck(G_B5_3);
 		int32_t L_9;
-		L_9 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(31 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, G_B5_3, G_B5_2, G_B5_1, G_B5_0);
+		L_9 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(32 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, G_B5_3, G_B5_2, G_B5_1, G_B5_0);
 		int32_t L_10 = L_9;
 		V_0 = L_10;
 		if ((((int32_t)L_10) > ((int32_t)0)))
@@ -19189,7 +19189,7 @@ IL_000e:
 			FileStream_t07C7222EE10B75F352B89B76E60820160FF10AD8* L_11 = __this->___m_FileStream_2;
 			NullCheck(L_11);
 			int64_t L_12;
-			L_12 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(29 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_11, ((int64_t)0), 2);
+			L_12 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(30 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_11, ((int64_t)0), 2);
 			// m_StartLength = m_SavedLength = m_FileStream.Length;
 			FileStream_t07C7222EE10B75F352B89B76E60820160FF10AD8* L_13 = __this->___m_FileStream_2;
 			NullCheck(L_13);
@@ -19509,7 +19509,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DownloadAgent_OnDownloadAgentHelperUpdat
 			int32_t L_6;
 			L_6 = DownloadAgentHelperUpdateBytesEventArgs_get_Length_mF5D2ACEBCA4171FD6936B17352370E7C2E394E54_inline(L_5, NULL);
 			NullCheck(L_0);
-			VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(34 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_0, L_2, L_4, L_6);
+			VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(35 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_0, L_2, L_4, L_6);
 			// m_WaitFlushSize += e.Length;
 			int32_t L_7 = __this->___m_WaitFlushSize_3;
 			DownloadAgentHelperUpdateBytesEventArgs_tF16500737244A5530C7762B51A816D799E160AD8* L_8 = ___1_e;
@@ -23369,7 +23369,7 @@ IL_0014:
 		Type_t* L_5 = ___0_dataRowType;
 		NullCheck(L_4);
 		bool L_6;
-		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
+		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
 		if (L_6)
 		{
 			goto IL_003c;
@@ -23380,7 +23380,7 @@ IL_0014:
 		Type_t* L_7 = ___0_dataRowType;
 		NullCheck(L_7);
 		String_t* L_8;
-		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_7);
+		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_7);
 		String_t* L_9;
 		L_9 = Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteralC3C075393D5C576321815CD705CDF208A0D52274)), L_8, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133_RuntimeMethod_var)));
 		GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF* L_10 = (GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF_il2cpp_TypeInfo_var)));
@@ -23440,7 +23440,7 @@ IL_0014:
 		Type_t* L_5 = ___0_dataRowType;
 		NullCheck(L_4);
 		bool L_6;
-		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
+		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
 		if (L_6)
 		{
 			goto IL_003c;
@@ -23451,7 +23451,7 @@ IL_0014:
 		Type_t* L_7 = ___0_dataRowType;
 		NullCheck(L_7);
 		String_t* L_8;
-		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_7);
+		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_7);
 		String_t* L_9;
 		L_9 = Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteralC3C075393D5C576321815CD705CDF208A0D52274)), L_8, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133_RuntimeMethod_var)));
 		GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF* L_10 = (GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF_il2cpp_TypeInfo_var)));
@@ -23512,7 +23512,7 @@ IL_0014:
 		Type_t* L_5 = ___0_dataRowType;
 		NullCheck(L_4);
 		bool L_6;
-		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
+		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
 		if (L_6)
 		{
 			goto IL_003c;
@@ -23523,7 +23523,7 @@ IL_0014:
 		Type_t* L_7 = ___0_dataRowType;
 		NullCheck(L_7);
 		String_t* L_8;
-		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_7);
+		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_7);
 		String_t* L_9;
 		L_9 = Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteralC3C075393D5C576321815CD705CDF208A0D52274)), L_8, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133_RuntimeMethod_var)));
 		GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF* L_10 = (GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF_il2cpp_TypeInfo_var)));
@@ -23583,7 +23583,7 @@ IL_0014:
 		Type_t* L_5 = ___0_dataRowType;
 		NullCheck(L_4);
 		bool L_6;
-		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
+		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
 		if (L_6)
 		{
 			goto IL_003c;
@@ -23594,7 +23594,7 @@ IL_0014:
 		Type_t* L_7 = ___0_dataRowType;
 		NullCheck(L_7);
 		String_t* L_8;
-		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_7);
+		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_7);
 		String_t* L_9;
 		L_9 = Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteralC3C075393D5C576321815CD705CDF208A0D52274)), L_8, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133_RuntimeMethod_var)));
 		GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF* L_10 = (GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF_il2cpp_TypeInfo_var)));
@@ -23918,7 +23918,7 @@ IL_003a:
 		Type_t* L_9 = ___0_dataRowType;
 		NullCheck(L_8);
 		bool L_10;
-		L_10 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_8, L_9);
+		L_10 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_8, L_9);
 		if (L_10)
 		{
 			goto IL_0062;
@@ -23929,7 +23929,7 @@ IL_003a:
 		Type_t* L_11 = ___0_dataRowType;
 		NullCheck(L_11);
 		String_t* L_12;
-		L_12 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_11);
+		L_12 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_11);
 		String_t* L_13;
 		L_13 = Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteralC3C075393D5C576321815CD705CDF208A0D52274)), L_12, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133_RuntimeMethod_var)));
 		GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF* L_14 = (GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF_il2cpp_TypeInfo_var)));
@@ -23980,7 +23980,7 @@ IL_0086:
 		(L_26)->SetAt(static_cast<il2cpp_array_size_t>(0), (Type_t*)L_27);
 		NullCheck(L_24);
 		Type_t* L_28;
-		L_28 = VirtualFuncInvoker1< Type_t*, TypeU5BU5D_t97234E1129B564EB38B8D85CAC2AD8B5B9522FFB* >::Invoke(125 /* System.Type System.Type::MakeGenericType(System.Type[]) */, L_24, L_26);
+		L_28 = VirtualFuncInvoker1< Type_t*, TypeU5BU5D_t97234E1129B564EB38B8D85CAC2AD8B5B9522FFB* >::Invoke(164 /* System.Type System.Type::MakeGenericType(System.Type[]) */, L_24, L_26);
 		// DataTableBase dataTable = (DataTableBase)Activator.CreateInstance(dataTableType, name);
 		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_29 = (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)(ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)SZArrayNew(ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918_il2cpp_TypeInfo_var, (uint32_t)1);
 		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_30 = L_29;
@@ -24051,7 +24051,7 @@ IL_0014:
 		Type_t* L_5 = ___0_dataRowType;
 		NullCheck(L_4);
 		bool L_6;
-		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
+		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
 		if (L_6)
 		{
 			goto IL_003c;
@@ -24062,7 +24062,7 @@ IL_0014:
 		Type_t* L_7 = ___0_dataRowType;
 		NullCheck(L_7);
 		String_t* L_8;
-		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_7);
+		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_7);
 		String_t* L_9;
 		L_9 = Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteralC3C075393D5C576321815CD705CDF208A0D52274)), L_8, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133_RuntimeMethod_var)));
 		GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF* L_10 = (GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF_il2cpp_TypeInfo_var)));
@@ -24122,7 +24122,7 @@ IL_0014:
 		Type_t* L_5 = ___0_dataRowType;
 		NullCheck(L_4);
 		bool L_6;
-		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
+		L_6 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_4, L_5);
 		if (L_6)
 		{
 			goto IL_003c;
@@ -24133,7 +24133,7 @@ IL_0014:
 		Type_t* L_7 = ___0_dataRowType;
 		NullCheck(L_7);
 		String_t* L_8;
-		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_7);
+		L_8 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_7);
 		String_t* L_9;
 		L_9 = Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteralC3C075393D5C576321815CD705CDF208A0D52274)), L_8, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Text_Format_TisString_t_mD819A1D66DC9878F509AB65938BC891EA18A8133_RuntimeMethod_var)));
 		GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF* L_10 = (GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&GameFrameworkException_t213393CA03B73E08C53FC0A75602901F8E8FC8DF_il2cpp_TypeInfo_var)));

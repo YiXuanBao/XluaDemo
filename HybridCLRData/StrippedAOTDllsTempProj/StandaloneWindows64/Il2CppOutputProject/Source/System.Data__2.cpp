@@ -13252,7 +13252,7 @@ IL_007b_1:
 				L_28 = DataColumn_get_DataType_mD6633BF8B7F6470C96791128AA8B1D7F736EBD0E_inline(L_27, NULL);
 				NullCheck(L_28);
 				String_t* L_29;
-				L_29 = VirtualFuncInvoker0< String_t* >::Invoke(25 /* System.String System.Type::get_AssemblyQualifiedName() */, L_28);
+				L_29 = VirtualFuncInvoker0< String_t* >::Invoke(31 /* System.String System.Type::get_AssemblyQualifiedName() */, L_28);
 				Exception_t* L_30;
 				L_30 = ExceptionBuilder_UDTImplementsIChangeTrackingButnotIRevertible_mDE241276E2311C5B24DFB91F77DA0254E5136FC8(L_29, NULL);
 				IL2CPP_RAISE_MANAGED_EXCEPTION(L_30, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&DataRow_RejectChanges_m43BF31E837F1E95DF56BF7938CE77F18F2A039D0_RuntimeMethod_var)));
@@ -16074,7 +16074,7 @@ IL_0079:
 		MemoryStream_tAAED1B42172E3390584E4194308AB878E786AAC2* L_36 = V_1;
 		NullCheck(L_36);
 		ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_37;
-		L_37 = VirtualFuncInvoker0< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* >::Invoke(37 /* System.Byte[] System.IO.MemoryStream::GetBuffer() */, L_36);
+		L_37 = VirtualFuncInvoker0< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* >::Invoke(38 /* System.Byte[] System.IO.MemoryStream::GetBuffer() */, L_36);
 		NullCheck(L_30);
 		SerializationInfo_AddValue_m28FE9B110F21DDB8FF5F5E35A0EABD659DB22C2F(L_30, L_35, (RuntimeObject*)L_37, NULL);
 		int32_t L_38 = V_0;

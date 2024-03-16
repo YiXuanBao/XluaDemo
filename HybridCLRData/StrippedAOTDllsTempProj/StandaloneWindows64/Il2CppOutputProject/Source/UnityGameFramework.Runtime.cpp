@@ -3474,35 +3474,39 @@ struct Socket_t1F49472CDA22B581C29A258225ABF3ADA9DED67E  : public RuntimeObject
 	// System.Net.Sockets.Socket/CachedEventArgs System.Net.Sockets.Socket::_cachedTaskEventArgs
 	CachedEventArgs_tF0692E89962FD1A045B17BC985F838C11FB6822C* ____cachedTaskEventArgs_6;
 	// System.Boolean System.Net.Sockets.Socket::is_closed
-	bool ___is_closed_13;
+	bool ___is_closed_17;
 	// System.Boolean System.Net.Sockets.Socket::is_listening
-	bool ___is_listening_14;
+	bool ___is_listening_18;
+	// System.Boolean System.Net.Sockets.Socket::useOverlappedIO
+	bool ___useOverlappedIO_19;
 	// System.Int32 System.Net.Sockets.Socket::linger_timeout
-	int32_t ___linger_timeout_15;
+	int32_t ___linger_timeout_20;
 	// System.Net.Sockets.AddressFamily System.Net.Sockets.Socket::addressFamily
-	int32_t ___addressFamily_16;
+	int32_t ___addressFamily_21;
 	// System.Net.Sockets.SocketType System.Net.Sockets.Socket::socketType
-	int32_t ___socketType_17;
+	int32_t ___socketType_22;
 	// System.Net.Sockets.ProtocolType System.Net.Sockets.Socket::protocolType
-	int32_t ___protocolType_18;
+	int32_t ___protocolType_23;
 	// System.Net.Sockets.SafeSocketHandle System.Net.Sockets.Socket::m_Handle
-	SafeSocketHandle_t5A597D30D951E736B750ED09D5B3AB72F98407EE* ___m_Handle_19;
+	SafeSocketHandle_t5A597D30D951E736B750ED09D5B3AB72F98407EE* ___m_Handle_24;
 	// System.Net.EndPoint System.Net.Sockets.Socket::seed_endpoint
-	EndPoint_t6233F4E2EB9F0F2D36E187F12BE050E6D8B73564* ___seed_endpoint_20;
+	EndPoint_t6233F4E2EB9F0F2D36E187F12BE050E6D8B73564* ___seed_endpoint_25;
 	// System.Threading.SemaphoreSlim System.Net.Sockets.Socket::ReadSem
-	SemaphoreSlim_t0D5CB5685D9BFA5BF95CEC6E7395490F933E8DB2* ___ReadSem_21;
+	SemaphoreSlim_t0D5CB5685D9BFA5BF95CEC6E7395490F933E8DB2* ___ReadSem_26;
 	// System.Threading.SemaphoreSlim System.Net.Sockets.Socket::WriteSem
-	SemaphoreSlim_t0D5CB5685D9BFA5BF95CEC6E7395490F933E8DB2* ___WriteSem_22;
+	SemaphoreSlim_t0D5CB5685D9BFA5BF95CEC6E7395490F933E8DB2* ___WriteSem_27;
 	// System.Boolean System.Net.Sockets.Socket::is_blocking
-	bool ___is_blocking_23;
+	bool ___is_blocking_28;
 	// System.Boolean System.Net.Sockets.Socket::is_bound
-	bool ___is_bound_24;
+	bool ___is_bound_29;
 	// System.Boolean System.Net.Sockets.Socket::is_connected
-	bool ___is_connected_25;
+	bool ___is_connected_30;
 	// System.Int32 System.Net.Sockets.Socket::m_IntCleanedUp
-	int32_t ___m_IntCleanedUp_26;
+	int32_t ___m_IntCleanedUp_31;
 	// System.Boolean System.Net.Sockets.Socket::connect_in_progress
-	bool ___connect_in_progress_27;
+	bool ___connect_in_progress_32;
+	// System.Int32 System.Net.Sockets.Socket::ID
+	int32_t ___ID_33;
 };
 
 // UnityEngine.TextAsset
@@ -5153,36 +5157,38 @@ struct Socket_t1F49472CDA22B581C29A258225ABF3ADA9DED67E_StaticFields
 	bool ___s_Initialized_11;
 	// System.Boolean modreq(System.Runtime.CompilerServices.IsVolatile) System.Net.Sockets.Socket::s_LoggingEnabled
 	bool ___s_LoggingEnabled_12;
+	// System.Boolean modreq(System.Runtime.CompilerServices.IsVolatile) System.Net.Sockets.Socket::s_PerfCountersEnabled
+	bool ___s_PerfCountersEnabled_13;
 	// System.AsyncCallback System.Net.Sockets.Socket::AcceptAsyncCallback
-	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___AcceptAsyncCallback_28;
+	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___AcceptAsyncCallback_34;
 	// System.IOAsyncCallback System.Net.Sockets.Socket::BeginAcceptCallback
-	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginAcceptCallback_29;
+	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginAcceptCallback_35;
 	// System.IOAsyncCallback System.Net.Sockets.Socket::BeginAcceptReceiveCallback
-	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginAcceptReceiveCallback_30;
+	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginAcceptReceiveCallback_36;
 	// System.AsyncCallback System.Net.Sockets.Socket::ConnectAsyncCallback
-	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___ConnectAsyncCallback_31;
+	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___ConnectAsyncCallback_37;
 	// System.IOAsyncCallback System.Net.Sockets.Socket::BeginConnectCallback
-	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginConnectCallback_32;
+	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginConnectCallback_38;
 	// System.AsyncCallback System.Net.Sockets.Socket::DisconnectAsyncCallback
-	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___DisconnectAsyncCallback_33;
+	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___DisconnectAsyncCallback_39;
 	// System.IOAsyncCallback System.Net.Sockets.Socket::BeginDisconnectCallback
-	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginDisconnectCallback_34;
+	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginDisconnectCallback_40;
 	// System.AsyncCallback System.Net.Sockets.Socket::ReceiveAsyncCallback
-	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___ReceiveAsyncCallback_35;
+	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___ReceiveAsyncCallback_41;
 	// System.IOAsyncCallback System.Net.Sockets.Socket::BeginReceiveCallback
-	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginReceiveCallback_36;
+	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginReceiveCallback_42;
 	// System.IOAsyncCallback System.Net.Sockets.Socket::BeginReceiveGenericCallback
-	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginReceiveGenericCallback_37;
+	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginReceiveGenericCallback_43;
 	// System.AsyncCallback System.Net.Sockets.Socket::ReceiveFromAsyncCallback
-	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___ReceiveFromAsyncCallback_38;
+	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___ReceiveFromAsyncCallback_44;
 	// System.IOAsyncCallback System.Net.Sockets.Socket::BeginReceiveFromCallback
-	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginReceiveFromCallback_39;
+	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginReceiveFromCallback_45;
 	// System.AsyncCallback System.Net.Sockets.Socket::SendAsyncCallback
-	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___SendAsyncCallback_40;
+	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___SendAsyncCallback_46;
 	// System.IOAsyncCallback System.Net.Sockets.Socket::BeginSendGenericCallback
-	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginSendGenericCallback_41;
+	IOAsyncCallback_tDBBA8BBDA6B203613680E77BD4AD6320A1268388* ___BeginSendGenericCallback_47;
 	// System.AsyncCallback System.Net.Sockets.Socket::SendToAsyncCallback
-	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___SendToAsyncCallback_42;
+	AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___SendToAsyncCallback_48;
 };
 
 // System.Net.Sockets.Socket
@@ -10569,7 +10575,7 @@ IL_000d:
 		Type_t* L_5 = V_1;
 		NullCheck(L_5);
 		String_t* L_6;
-		L_6 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_5);
+		L_6 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_5);
 		String_t* L_7 = ___0_typeName;
 		bool L_8;
 		L_8 = String_op_Equality_m030E1B219352228970A076136E455C4E568C02C1(L_6, L_7, NULL);
@@ -21626,7 +21632,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ObjectPoolInformationWindow_DrawObjectPo
 		L_9 = VirtualFuncInvoker0< Type_t* >::Invoke(6 /* System.Type GameFramework.ObjectPool.ObjectPoolBase::get_ObjectType() */, L_8);
 		NullCheck(L_9);
 		String_t* L_10;
-		L_10 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_9);
+		L_10 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_9);
 		ScrollableDebuggerWindowBase_DrawItem_mAFB44514A21E2291CAD8B5C1B0B283EF34C141BA(_stringLiteralA15CF7E1CEFBD0C475E3A89A80B5393D417F8634, L_10, NULL);
 		// DrawItem("Auto Release Interval", objectPool.AutoReleaseInterval.ToString());
 		ObjectPoolBase_tC69BB64A9322AA8965B5C64DFD49F788D96A2AF7* L_11 = ___0_objectPool;
@@ -23116,7 +23122,7 @@ IL_0086:
 		L_16 = ReferencePoolInfo_get_Type_m198E552B5B86BCE00A0B117B4BE409D6C86DB44F_inline((&V_3), NULL);
 		NullCheck(L_16);
 		Assembly_t* L_17;
-		L_17 = VirtualFuncInvoker0< Assembly_t* >::Invoke(27 /* System.Reflection.Assembly System.Type::get_Assembly() */, L_16);
+		L_17 = VirtualFuncInvoker0< Assembly_t* >::Invoke(33 /* System.Reflection.Assembly System.Type::get_Assembly() */, L_16);
 		NullCheck(L_17);
 		AssemblyName_t555F1570F523D87D970C6E7F27B1B44C83EADDD2* L_18;
 		L_18 = VirtualFuncInvoker0< AssemblyName_t555F1570F523D87D970C6E7F27B1B44C83EADDD2* >::Invoke(20 /* System.Reflection.AssemblyName System.Reflection.Assembly::GetName() */, L_17);
@@ -23476,7 +23482,7 @@ IL_0020:
 		L_4 = ReferencePoolInfo_get_Type_m198E552B5B86BCE00A0B117B4BE409D6C86DB44F_inline((&___0_referencePoolInfo), NULL);
 		NullCheck(L_4);
 		String_t* L_5;
-		L_5 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_4);
+		L_5 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_4);
 		G_B3_0 = L_5;
 	}
 
@@ -23605,12 +23611,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ReferencePoolInformationWindow_FullCl
 		L_0 = ReferencePoolInfo_get_Type_m198E552B5B86BCE00A0B117B4BE409D6C86DB44F_inline((&___0_a), NULL);
 		NullCheck(L_0);
 		String_t* L_1;
-		L_1 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_0);
+		L_1 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_0);
 		Type_t* L_2;
 		L_2 = ReferencePoolInfo_get_Type_m198E552B5B86BCE00A0B117B4BE409D6C86DB44F_inline((&___1_b), NULL);
 		NullCheck(L_2);
 		String_t* L_3;
-		L_3 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_2);
+		L_3 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_2);
 		NullCheck(L_1);
 		int32_t L_4;
 		L_4 = String_CompareTo_m32A3DFBEA443A4091053D53825DBB76E6EAFECCF(L_1, L_3, NULL);

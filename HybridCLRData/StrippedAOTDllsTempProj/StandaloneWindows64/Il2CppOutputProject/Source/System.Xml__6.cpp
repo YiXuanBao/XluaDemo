@@ -8190,7 +8190,7 @@ IL_009a:
 		Type_t* L_29 = V_0;
 		NullCheck(L_28);
 		bool L_30;
-		L_30 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_28, L_29);
+		L_30 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_28, L_29);
 		if (L_30)
 		{
 			goto IL_00bd;
@@ -8245,10 +8245,10 @@ IL_00bd:
 		L_45 = Object_GetType_mE10A8FC1E57F3DF29972CCBC026C2DC3942263B3(L_44, NULL);
 		NullCheck(L_45);
 		Type_t* L_46;
-		L_46 = VirtualFuncInvoker0< Type_t* >::Invoke(46 /* System.Type System.Type::GetElementType() */, L_45);
+		L_46 = VirtualFuncInvoker0< Type_t* >::Invoke(55 /* System.Type System.Type::GetElementType() */, L_45);
 		NullCheck(L_43);
 		bool L_47;
-		L_47 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_43, L_46);
+		L_47 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_43, L_46);
 		if (!L_47)
 		{
 			goto IL_0152;
@@ -9389,7 +9389,7 @@ IL_004b:
 		L_21 = Object_GetType_mE10A8FC1E57F3DF29972CCBC026C2DC3942263B3(L_20, NULL);
 		NullCheck(L_21);
 		bool L_22;
-		L_22 = VirtualFuncInvoker0< bool >::Invoke(68 /* System.Boolean System.Type::get_IsEnum() */, L_21);
+		L_22 = VirtualFuncInvoker0< bool >::Invoke(89 /* System.Boolean System.Type::get_IsEnum() */, L_21);
 		if (!L_22)
 		{
 			goto IL_0080;
@@ -9917,7 +9917,7 @@ IL_021a:
 		RuntimeObject* L_124 = ___1_memberValue;
 		NullCheck(L_123);
 		bool L_125;
-		L_125 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(118 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_123, L_124);
+		L_125 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(157 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_123, L_124);
 		if (L_125)
 		{
 			goto IL_024a;
@@ -10106,7 +10106,7 @@ IL_008f:
 		Type_t* L_35 = V_0;
 		NullCheck(L_35);
 		Type_t* L_36;
-		L_36 = VirtualFuncInvoker0< Type_t* >::Invoke(113 /* System.Type System.Type::get_BaseType() */, L_35);
+		L_36 = VirtualFuncInvoker0< Type_t* >::Invoke(149 /* System.Type System.Type::get_BaseType() */, L_35);
 		V_0 = L_36;
 	}
 
@@ -13525,7 +13525,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* XmlTypeMapMember_GetValue_mD73
 		String_t* L_2 = ___1_name;
 		NullCheck(L_1);
 		MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053* L_3;
-		L_3 = VirtualFuncInvoker2< MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053*, String_t*, int32_t >::Invoke(90 /* System.Reflection.MemberInfo[] System.Type::GetMember(System.String,System.Reflection.BindingFlags) */, L_1, L_2, ((int32_t)20));
+		L_3 = VirtualFuncInvoker2< MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053*, String_t*, int32_t >::Invoke(117 /* System.Reflection.MemberInfo[] System.Type::GetMember(System.String,System.Reflection.BindingFlags) */, L_1, L_2, ((int32_t)20));
 		V_0 = L_3;
 		MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053* L_4 = V_0;
 		NullCheck(L_4);
@@ -13691,7 +13691,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XmlTypeMapMember_SetValue_mE1E56C2E7FF4B
 		String_t* L_2 = ___1_name;
 		NullCheck(L_1);
 		MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053* L_3;
-		L_3 = VirtualFuncInvoker2< MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053*, String_t*, int32_t >::Invoke(90 /* System.Reflection.MemberInfo[] System.Type::GetMember(System.String,System.Reflection.BindingFlags) */, L_1, L_2, ((int32_t)20));
+		L_3 = VirtualFuncInvoker2< MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053*, String_t*, int32_t >::Invoke(117 /* System.Reflection.MemberInfo[] System.Type::GetMember(System.String,System.Reflection.BindingFlags) */, L_1, L_2, ((int32_t)20));
 		V_0 = L_3;
 		MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053* L_4 = V_0;
 		NullCheck(L_4);
@@ -13747,7 +13747,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XmlTypeMapMember_InitMember_mDF86C7533AF
 		String_t* L_1 = __this->____name_0;
 		NullCheck(L_0);
 		MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053* L_2;
-		L_2 = VirtualFuncInvoker2< MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053*, String_t*, int32_t >::Invoke(90 /* System.Reflection.MemberInfo[] System.Type::GetMember(System.String,System.Reflection.BindingFlags) */, L_0, L_1, ((int32_t)20));
+		L_2 = VirtualFuncInvoker2< MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053*, String_t*, int32_t >::Invoke(117 /* System.Reflection.MemberInfo[] System.Type::GetMember(System.String,System.Reflection.BindingFlags) */, L_0, L_1, ((int32_t)20));
 		V_0 = L_2;
 		MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053* L_3 = V_0;
 		NullCheck(L_3);
@@ -13761,7 +13761,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XmlTypeMapMember_InitMember_mDF86C7533AF
 		L_8 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(L_7, _stringLiteral87C858E345116CE7C4123AF185CDD74EFDD94384, NULL);
 		NullCheck(L_6);
 		MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053* L_9;
-		L_9 = VirtualFuncInvoker2< MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053*, String_t*, int32_t >::Invoke(90 /* System.Reflection.MemberInfo[] System.Type::GetMember(System.String,System.Reflection.BindingFlags) */, L_6, L_8, ((int32_t)20));
+		L_9 = VirtualFuncInvoker2< MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053*, String_t*, int32_t >::Invoke(117 /* System.Reflection.MemberInfo[] System.Type::GetMember(System.String,System.Reflection.BindingFlags) */, L_6, L_8, ((int32_t)20));
 		V_0 = L_9;
 		MemberInfoU5BU5D_t4CB6970BB166E8E1CFB06152B2A2284971873053* L_10 = V_0;
 		NullCheck(L_10);
@@ -14673,7 +14673,7 @@ IL_00b3_1:
 				RuntimeObject* L_37 = ___1_memberValue;
 				NullCheck(L_36);
 				bool L_38;
-				L_38 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(118 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_36, L_37);
+				L_38 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(157 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_36, L_37);
 				if (!L_38)
 				{
 					goto IL_00fb_1;
@@ -14703,7 +14703,7 @@ IL_00b3_1:
 				L_45 = TypeData_get_Type_m2B7E02EA472BB9C6C4306412332A73C7E8E86E4F_inline(L_44, NULL);
 				NullCheck(L_42);
 				bool L_46;
-				L_46 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(21 /* System.Boolean System.Type::IsSubclassOf(System.Type) */, L_42, L_45);
+				L_46 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(27 /* System.Boolean System.Type::IsSubclassOf(System.Type) */, L_42, L_45);
 				if (!L_46)
 				{
 					goto IL_00fb_1;
@@ -15797,7 +15797,7 @@ IL_0083:
 		L_30 = VirtualFuncInvoker0< Type_t* >::Invoke(40 /* System.Type System.Reflection.MethodInfo::get_ReturnType() */, L_29);
 		NullCheck(L_28);
 		bool L_31;
-		L_31 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_28, L_30);
+		L_31 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_28, L_30);
 		if (L_31)
 		{
 			goto IL_00c2;
@@ -15814,7 +15814,7 @@ IL_0083:
 		L_35 = VirtualFuncInvoker0< Type_t* >::Invoke(40 /* System.Type System.Reflection.MethodInfo::get_ReturnType() */, L_34);
 		NullCheck(L_33);
 		bool L_36;
-		L_36 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_33, L_35);
+		L_36 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_33, L_35);
 		if (L_36)
 		{
 			goto IL_00c2;
@@ -16152,7 +16152,7 @@ IL_024b:
 		L_107 = TypeData_get_Type_m2B7E02EA472BB9C6C4306412332A73C7E8E86E4F_inline(L_106, NULL);
 		NullCheck(L_107);
 		String_t* L_108;
-		L_108 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_107);
+		L_108 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_107);
 		String_t* L_109;
 		L_109 = String_Concat_m8855A6DE10F84DA7F4EC113CADDB59873A25573B(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteralEDE169578D0784988295F2BB094D04C3F7C9B832)), L_108, ((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteralDD640DD960B4CEB48E82A897FEAB7F64F88777F4)), NULL);
 		InvalidOperationException_t5DDE4D49B7405FAAB1E4576F4715A42A3FAD4BAB* L_110 = (InvalidOperationException_t5DDE4D49B7405FAAB1E4576F4715A42A3FAD4BAB*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&InvalidOperationException_t5DDE4D49B7405FAAB1E4576F4715A42A3FAD4BAB_il2cpp_TypeInfo_var)));
@@ -18091,7 +18091,7 @@ IL_0112_1:
 				Type_t* L_54 = V_6;
 				NullCheck(L_53);
 				bool L_55;
-				L_55 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_53, L_54);
+				L_55 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_53, L_54);
 				if (!L_55)
 				{
 					goto IL_014e_1;
@@ -18121,7 +18121,7 @@ IL_0112_1:
 				L_62 = TypeData_get_Type_m2B7E02EA472BB9C6C4306412332A73C7E8E86E4F_inline(L_61, NULL);
 				NullCheck(L_59);
 				bool L_63;
-				L_63 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_59, L_62);
+				L_63 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_59, L_62);
 				if (!L_63)
 				{
 					goto IL_014e_1;

@@ -5876,7 +5876,7 @@ struct IntPtr_t_StaticFields
 struct Mathf_tE284D016E3B297B72311AAD9EB8F0E643F6A4682_StaticFields
 {
 	// System.Single UnityEngine.Mathf::Epsilon
-	float ___Epsilon_0;
+	float ___Epsilon_5;
 };
 
 // UnityEngine.Mathf
@@ -19372,7 +19372,7 @@ IL_01b2:
 		Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700* L_140 = L_139->___spriteSheet_12;
 		NullCheck(L_140);
 		int32_t L_141;
-		L_141 = VirtualFuncInvoker0< int32_t >::Invoke(4 /* System.Int32 UnityEngine.Texture::get_width() */, L_140);
+		L_141 = VirtualFuncInvoker0< int32_t >::Invoke(5 /* System.Int32 UnityEngine.Texture::get_width() */, L_140);
 		TMP_SpriteCharacter_t98295D0A81320909AC4AD5F2602DD69EACBB449E* L_142 = V_3;
 		NullCheck(L_142);
 		Glyph_t700CF8EBE04ED4AEAB520885AAA1B309E02A103F* L_143;
@@ -19388,7 +19388,7 @@ IL_01b2:
 		Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700* L_147 = L_146->___spriteSheet_12;
 		NullCheck(L_147);
 		int32_t L_148;
-		L_148 = VirtualFuncInvoker0< int32_t >::Invoke(6 /* System.Int32 UnityEngine.Texture::get_height() */, L_147);
+		L_148 = VirtualFuncInvoker0< int32_t >::Invoke(7 /* System.Int32 UnityEngine.Texture::get_height() */, L_147);
 		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&V_12), ((float)(((float)L_138)/((float)L_141))), ((float)(((float)L_145)/((float)L_148))), NULL);
 		// Vector2 uv1 = new Vector2(uv0.x, (float)(spriteCharacter.glyph.glyphRect.y + spriteCharacter.glyph.glyphRect.height) / spriteAsset.spriteSheet.height);
 		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_149 = V_12;
@@ -19418,7 +19418,7 @@ IL_01b2:
 		Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700* L_160 = L_159->___spriteSheet_12;
 		NullCheck(L_160);
 		int32_t L_161;
-		L_161 = VirtualFuncInvoker0< int32_t >::Invoke(6 /* System.Int32 UnityEngine.Texture::get_height() */, L_160);
+		L_161 = VirtualFuncInvoker0< int32_t >::Invoke(7 /* System.Int32 UnityEngine.Texture::get_height() */, L_160);
 		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&V_13), L_150, ((float)(((float)((int32_t)il2cpp_codegen_add(L_154, L_158)))/((float)L_161))), NULL);
 		// Vector2 uv2 = new Vector2((float)(spriteCharacter.glyph.glyphRect.x + spriteCharacter.glyph.glyphRect.width) / spriteAsset.spriteSheet.width, uv1.y);
 		TMP_SpriteCharacter_t98295D0A81320909AC4AD5F2602DD69EACBB449E* L_162 = V_3;
@@ -19446,7 +19446,7 @@ IL_01b2:
 		Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700* L_171 = L_170->___spriteSheet_12;
 		NullCheck(L_171);
 		int32_t L_172;
-		L_172 = VirtualFuncInvoker0< int32_t >::Invoke(4 /* System.Int32 UnityEngine.Texture::get_width() */, L_171);
+		L_172 = VirtualFuncInvoker0< int32_t >::Invoke(5 /* System.Int32 UnityEngine.Texture::get_width() */, L_171);
 		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_173 = V_13;
 		float L_174 = L_173.___y_1;
 		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&V_14), ((float)(((float)((int32_t)il2cpp_codegen_add(L_165, L_169)))/((float)L_172))), L_174, NULL);
@@ -32086,7 +32086,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool TMP_TextUtilities_IntersectLinePlane_mEC
 		float L_17 = V_2;
 		float L_18;
 		L_18 = fabsf(L_17);
-		float L_19 = ((Mathf_tE284D016E3B297B72311AAD9EB8F0E643F6A4682_StaticFields*)il2cpp_codegen_static_fields_for(Mathf_tE284D016E3B297B72311AAD9EB8F0E643F6A4682_il2cpp_TypeInfo_var))->___Epsilon_0;
+		float L_19 = ((Mathf_tE284D016E3B297B72311AAD9EB8F0E643F6A4682_StaticFields*)il2cpp_codegen_static_fields_for(Mathf_tE284D016E3B297B72311AAD9EB8F0E643F6A4682_il2cpp_TypeInfo_var))->___Epsilon_5;
 		if ((!(((float)L_18) < ((float)L_19))))
 		{
 			goto IL_0054;

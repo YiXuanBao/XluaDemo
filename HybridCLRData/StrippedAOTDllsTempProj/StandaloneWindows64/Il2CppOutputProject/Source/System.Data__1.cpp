@@ -7262,7 +7262,7 @@ IL_010f:
 		L_166 = DataColumn_get_DataType_mD6633BF8B7F6470C96791128AA8B1D7F736EBD0E_inline(L_165, NULL);
 		NullCheck(L_166);
 		String_t* L_167;
-		L_167 = VirtualFuncInvoker0< String_t* >::Invoke(25 /* System.String System.Type::get_AssemblyQualifiedName() */, L_166);
+		L_167 = VirtualFuncInvoker0< String_t* >::Invoke(31 /* System.String System.Type::get_AssemblyQualifiedName() */, L_166);
 		NullCheck(L_157);
 		SerializationInfo_AddValue_m28FE9B110F21DDB8FF5F5E35A0EABD659DB22C2F(L_157, L_162, L_167, NULL);
 		SerializationInfo_t3C47F63E24BEB9FCE2DC6309E027F238DC5C5E37* L_168 = ___0_info;
@@ -17903,7 +17903,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t DataTable_IndexOf_m53D9D42A5C662DA9F6
 		int32_t L_3 = __this->____compareFlags_25;
 		NullCheck(L_0);
 		int32_t L_4;
-		L_4 = VirtualFuncInvoker3< int32_t, String_t*, String_t*, int32_t >::Invoke(11 /* System.Int32 System.Globalization.CompareInfo::IndexOf(System.String,System.String,System.Globalization.CompareOptions) */, L_0, L_1, L_2, L_3);
+		L_4 = VirtualFuncInvoker3< int32_t, String_t*, String_t*, int32_t >::Invoke(12 /* System.Int32 System.Globalization.CompareInfo::IndexOf(System.String,System.String,System.Globalization.CompareOptions) */, L_0, L_1, L_2, L_3);
 		return L_4;
 	}
 }

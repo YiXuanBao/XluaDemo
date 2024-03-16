@@ -310,6 +310,8 @@ struct AllocToUpdateU5BU5D_tC52656BA0214FA47884361867D3ED2D23CE612C3;
 struct Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07;
 // UnityEngine.UIElements.UIR.Alloc
 struct Alloc_t78312CFE58F38082281E80E297AE6176BD2BD8AE;
+// System.AsyncCallback
+struct AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C;
 // UnityEngine.UIElements.AtlasBase
 struct AtlasBase_t196C45243F41C19DC6258965057BBAA150D278BC;
 // UnityEngine.UIElements.UIR.BaseShaderInfoStorage
@@ -340,6 +342,8 @@ struct GradientRemap_t74470C9887918BD4AFA8BB25818F21AFB414F307;
 struct GradientRemapPool_t92123B2D5FEB0D9D60A2DF4BB39A4254B68BCF5B;
 // UnityEngine.UIElements.UIR.GradientSettingsAtlas
 struct GradientSettingsAtlas_t086C45D0F3B8F47571912544D8B6DEC6E8EC8C1A;
+// System.IAsyncResult
+struct IAsyncResult_t7B9B5A0ECB35DCEC31B8A8122C37D687369253B5;
 // System.Collections.IDictionary
 struct IDictionary_t6D03155AF1FA9083817AA5B6AD7DEEACC26AB220;
 // System.IDisposable
@@ -7878,11 +7882,11 @@ IL_0056:
 		RenderTexture_tBA90C4C3AD9EECCFDDCC632D97C29FAB80D60D27* L_15 = ___0_dst;
 		NullCheck(L_15);
 		int32_t L_16;
-		L_16 = VirtualFuncInvoker0< int32_t >::Invoke(4 /* System.Int32 UnityEngine.Texture::get_width() */, L_15);
+		L_16 = VirtualFuncInvoker0< int32_t >::Invoke(5 /* System.Int32 UnityEngine.Texture::get_width() */, L_15);
 		RenderTexture_tBA90C4C3AD9EECCFDDCC632D97C29FAB80D60D27* L_17 = ___0_dst;
 		NullCheck(L_17);
 		int32_t L_18;
-		L_18 = VirtualFuncInvoker0< int32_t >::Invoke(6 /* System.Int32 UnityEngine.Texture::get_height() */, L_17);
+		L_18 = VirtualFuncInvoker0< int32_t >::Invoke(7 /* System.Int32 UnityEngine.Texture::get_height() */, L_17);
 		GL_LoadPixelMatrix_mF1C5A4508C5F110512C116A5DDE7AB0483FE961A((0.0f), ((float)L_16), (0.0f), ((float)L_18), NULL);
 		RenderTexture_tBA90C4C3AD9EECCFDDCC632D97C29FAB80D60D27* L_19 = ___0_dst;
 		il2cpp_codegen_runtime_class_init_inline(Graphics_t99CD970FFEA58171C70F54DF0C06D315BD452F2C_il2cpp_TypeInfo_var);
@@ -8022,13 +8026,13 @@ IL_007d:
 		Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700* L_31 = L_30.___src_0;
 		NullCheck(L_31);
 		int32_t L_32;
-		L_32 = VirtualFuncInvoker0< int32_t >::Invoke(4 /* System.Int32 UnityEngine.Texture::get_width() */, L_31);
+		L_32 = VirtualFuncInvoker0< int32_t >::Invoke(5 /* System.Int32 UnityEngine.Texture::get_width() */, L_31);
 		V_10 = ((float)((1.0f)/((float)L_32)));
 		BlitInfo_t6D4C0580BBEF65F5EAD39FB6DBC85F360CF6A357 L_33 = V_9;
 		Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700* L_34 = L_33.___src_0;
 		NullCheck(L_34);
 		int32_t L_35;
-		L_35 = VirtualFuncInvoker0< int32_t >::Invoke(6 /* System.Int32 UnityEngine.Texture::get_height() */, L_34);
+		L_35 = VirtualFuncInvoker0< int32_t >::Invoke(7 /* System.Int32 UnityEngine.Texture::get_height() */, L_34);
 		V_11 = ((float)((1.0f)/((float)L_35)));
 		Vector2Int_t69B2886EBAB732D9B880565E18E7568F3DE0CE6A* L_36 = (Vector2Int_t69B2886EBAB732D9B880565E18E7568F3DE0CE6A*)(&(&V_9)->___dstPos_2);
 		int32_t L_37;
@@ -8698,11 +8702,11 @@ IL_001f:
 		Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700* L_14 = V_0;
 		NullCheck(L_14);
 		int32_t L_15;
-		L_15 = VirtualFuncInvoker0< int32_t >::Invoke(4 /* System.Int32 UnityEngine.Texture::get_width() */, L_14);
+		L_15 = VirtualFuncInvoker0< int32_t >::Invoke(5 /* System.Int32 UnityEngine.Texture::get_width() */, L_14);
 		Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700* L_16 = V_0;
 		NullCheck(L_16);
 		int32_t L_17;
-		L_17 = VirtualFuncInvoker0< int32_t >::Invoke(6 /* System.Int32 UnityEngine.Texture::get_height() */, L_16);
+		L_17 = VirtualFuncInvoker0< int32_t >::Invoke(7 /* System.Int32 UnityEngine.Texture::get_height() */, L_16);
 		Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 L_18;
 		memset((&L_18), 0, sizeof(L_18));
 		Vector4__ctor_m96B2CD8B862B271F513AF0BDC2EABD58E4DBC813_inline((&L_18), L_13, ((float)((1.0f)/((float)L_15))), ((float)((1.0f)/((float)L_17))), (0.0f), /*hidden argument*/NULL);

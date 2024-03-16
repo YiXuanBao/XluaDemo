@@ -17922,7 +17922,7 @@ IL_0013:
 		// m_CachedStream.SetLength(0L);
 		MemoryStream_tAAED1B42172E3390584E4194308AB878E786AAC2* L_3 = __this->___m_CachedStream_33;
 		NullCheck(L_3);
-		VirtualActionInvoker1< int64_t >::Invoke(30 /* System.Void System.IO.Stream::SetLength(System.Int64) */, L_3, ((int64_t)0));
+		VirtualActionInvoker1< int64_t >::Invoke(31 /* System.Void System.IO.Stream::SetLength(System.Int64) */, L_3, ((int64_t)0));
 		// }
 		return;
 	}

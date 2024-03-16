@@ -37,7 +37,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Assembly-CSharp.cpp">
     </ClCompile>
-    <ClCompile Include="Source\Assembly-CSharp__1.cpp">
+    <ClCompile Include="Source\Builtin.Runtime.cpp">
     </ClCompile>
     <ClCompile Include="Source\GameFramework.cpp">
     </ClCompile>
@@ -58,6 +58,8 @@
     <ClCompile Include="Source\GenericMethods__12.cpp">
     </ClCompile>
     <ClCompile Include="Source\GenericMethods__13.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\GenericMethods__14.cpp">
     </ClCompile>
     <ClCompile Include="Source\GenericMethods__2.cpp">
     </ClCompile>
@@ -171,7 +173,29 @@
     </ClCompile>
     <ClCompile Include="Source\Generics__51.cpp">
     </ClCompile>
+    <ClCompile Include="Source\Generics__52.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Generics__53.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Generics__54.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Generics__55.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Generics__56.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Generics__57.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Generics__58.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Generics__59.cpp">
+    </ClCompile>
     <ClCompile Include="Source\Generics__6.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Generics__60.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Generics__61.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Generics__62.cpp">
     </ClCompile>
     <ClCompile Include="Source\Generics__7.cpp">
     </ClCompile>
@@ -208,8 +232,6 @@
     <ClCompile Include="Source\Il2CppInvokerTable.cpp">
     </ClCompile>
     <ClCompile Include="Source\Il2CppReversePInvokeWrapperTable.cpp">
-    </ClCompile>
-    <ClCompile Include="Source\LitJson.cpp">
     </ClCompile>
     <ClCompile Include="Source\Mono.Security.cpp">
     </ClCompile>
@@ -248,6 +270,10 @@
     <ClCompile Include="Source\mscorlib__22.cpp">
     </ClCompile>
     <ClCompile Include="Source\mscorlib__23.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\mscorlib__24.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\mscorlib__25.cpp">
     </ClCompile>
     <ClCompile Include="Source\mscorlib__3.cpp">
     </ClCompile>
@@ -339,6 +365,8 @@
     </ClCompile>
     <ClCompile Include="Source\System__11.cpp">
     </ClCompile>
+    <ClCompile Include="Source\System__12.cpp">
+    </ClCompile>
     <ClCompile Include="Source\System__2.cpp">
     </ClCompile>
     <ClCompile Include="Source\System__3.cpp">
@@ -354,6 +382,12 @@
     <ClCompile Include="Source\System__8.cpp">
     </ClCompile>
     <ClCompile Include="Source\System__9.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Unity.Addressables.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Unity.Addressables__1.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\Unity.ResourceManager.cpp">
     </ClCompile>
     <ClCompile Include="Source\Unity.TextMeshPro.cpp">
     </ClCompile>
@@ -384,6 +418,8 @@
     <ClCompile Include="Source\UnityEngine.CoreModule__1.cpp">
     </ClCompile>
     <ClCompile Include="Source\UnityEngine.CoreModule__2.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\UnityEngine.CoreModule__3.cpp">
     </ClCompile>
     <ClCompile Include="Source\UnityEngine.cpp">
     </ClCompile>
@@ -471,6 +507,8 @@
     </ClCompile>
     <ClCompile Include="Source\UnityEngine.UnityAnalyticsModule.cpp">
     </ClCompile>
+    <ClCompile Include="Source\UnityEngine.UnityWebRequestAssetBundleModule.cpp">
+    </ClCompile>
     <ClCompile Include="Source\UnityEngine.UnityWebRequestModule.cpp">
     </ClCompile>
     <ClCompile Include="Source\UnityEngine.UnityWebRequestWWWModule.cpp">
@@ -494,6 +532,8 @@
     <ClCompile Include="Source\__Generated.cpp">
     </ClCompile>
     <ClCompile Include="Source\Assembly-CSharp_CodeGen.c">
+    </ClCompile>
+    <ClCompile Include="Source\Builtin.Runtime_CodeGen.c">
     </ClCompile>
     <ClCompile Include="Source\GameFramework_CodeGen.c">
     </ClCompile>
@@ -519,8 +559,6 @@
     </ClCompile>
     <ClCompile Include="Source\Il2CppTypeDefinitions.c">
     </ClCompile>
-    <ClCompile Include="Source\LitJson_CodeGen.c">
-    </ClCompile>
     <ClCompile Include="Source\Mono.Security_CodeGen.c">
     </ClCompile>
     <ClCompile Include="Source\mscorlib_CodeGen.c">
@@ -538,6 +576,10 @@
     <ClCompile Include="Source\System.Xml_CodeGen.c">
     </ClCompile>
     <ClCompile Include="Source\System_CodeGen.c">
+    </ClCompile>
+    <ClCompile Include="Source\Unity.Addressables_CodeGen.c">
+    </ClCompile>
+    <ClCompile Include="Source\Unity.ResourceManager_CodeGen.c">
     </ClCompile>
     <ClCompile Include="Source\Unity.TextMeshPro_CodeGen.c">
     </ClCompile>
@@ -596,6 +638,8 @@
     <ClCompile Include="Source\UnityEngine.UI_CodeGen.c">
     </ClCompile>
     <ClCompile Include="Source\UnityEngine.UnityAnalyticsModule_CodeGen.c">
+    </ClCompile>
+    <ClCompile Include="Source\UnityEngine.UnityWebRequestAssetBundleModule_CodeGen.c">
     </ClCompile>
     <ClCompile Include="Source\UnityEngine.UnityWebRequestModule_CodeGen.c">
     </ClCompile>

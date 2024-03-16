@@ -177,6 +177,8 @@ struct NamespaceU5BU5D_tF0F2AD10B1537EBB0F35B1611FD7D89D48FA9E93;
 struct StateU5BU5D_t41A58B7031FABDC61B34059A1FB722121203D858;
 // System.Xml.XmlTextWriter/TagInfo[]
 struct TagInfoU5BU5D_tC6FBAFF4593190EF8F7EEBAB8913C4E17D645776;
+// System.AsyncCallback
+struct AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C;
 // System.Data.AutoIncrementValue
 struct AutoIncrementValue_tB454D864DCB48A3C8EB2F806BD0AB284BB735BCE;
 // System.Reflection.Binder
@@ -229,6 +231,8 @@ struct Exception_t;
 struct FieldInfo_t;
 // System.Collections.Hashtable
 struct Hashtable_tEFC3B6496E6747787D8BB761B51F2AE3A8CFFE2D;
+// System.IAsyncResult
+struct IAsyncResult_t7B9B5A0ECB35DCEC31B8A8122C37D687369253B5;
 // System.Collections.IDictionary
 struct IDictionary_t6D03155AF1FA9083817AA5B6AD7DEEACC26AB220;
 // System.IFormatProvider
@@ -15737,7 +15741,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SqlUdtStorage__ctor_m94619A62207B20278BC
 		Type_t* L_6 = ___1_type;
 		NullCheck(L_5);
 		bool L_7;
-		L_7 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_5, L_6);
+		L_7 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_5, L_6);
 		Type_t* L_8 = ___1_type;
 		il2cpp_codegen_runtime_class_init_inline(DataStorage_t862E6C556F9F1FB0BA5A4F51D926C40944A1EC7A_il2cpp_TypeInfo_var);
 		int32_t L_9;
@@ -15749,7 +15753,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SqlUdtStorage__ctor_m94619A62207B20278BC
 		Type_t* L_12 = ___1_type;
 		NullCheck(L_11);
 		bool L_13;
-		L_13 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_11, L_12);
+		L_13 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_11, L_12);
 		__this->____implementsIXmlSerializable_15 = L_13;
 		RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B L_14 = { reinterpret_cast<intptr_t> (IComparable_t4D82A120347A28A1042C1563720033B8DA6E5C21_0_0_0_var) };
 		Type_t* L_15;
@@ -15757,7 +15761,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SqlUdtStorage__ctor_m94619A62207B20278BC
 		Type_t* L_16 = ___1_type;
 		NullCheck(L_15);
 		bool L_17;
-		L_17 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(22 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_15, L_16);
+		L_17 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(28 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_15, L_16);
 		__this->____implementsIComparable_16 = L_17;
 		return;
 	}
@@ -15931,7 +15935,7 @@ IL_004d:
 		Type_t* L_17 = ((DataStorage_t862E6C556F9F1FB0BA5A4F51D926C40944A1EC7A*)__this)->____dataType_3;
 		NullCheck(L_17);
 		String_t* L_18;
-		L_18 = VirtualFuncInvoker0< String_t* >::Invoke(25 /* System.String System.Type::get_AssemblyQualifiedName() */, L_17);
+		L_18 = VirtualFuncInvoker0< String_t* >::Invoke(31 /* System.String System.Type::get_AssemblyQualifiedName() */, L_17);
 		Exception_t* L_19;
 		L_19 = ExceptionBuilder_IComparableNotImplemented_m41968A228CBFEA81BC50C2F85E81CAB29CB11831(L_18, NULL);
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_19, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&SqlUdtStorage_CompareValueTo_m6FE681BA37983850EC12613E6FB61BAFE747CCFA_RuntimeMethod_var)));
@@ -16039,7 +16043,7 @@ IL_0047:
 		RuntimeObject* L_14 = ___1_value;
 		NullCheck(L_13);
 		bool L_15;
-		L_15 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(118 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_13, L_14);
+		L_15 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(157 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_13, L_14);
 		if (L_15)
 		{
 			goto IL_005b;
@@ -16269,7 +16273,7 @@ IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR RuntimeObject* SqlUdtStorage
 		L_8 = XSDSchema_XsdtoClr_m56B7AD7BAF9F6E0A70068CA8087844089DA5E059(L_7, NULL);
 		NullCheck(L_8);
 		String_t* L_9;
-		L_9 = VirtualFuncInvoker0< String_t* >::Invoke(26 /* System.String System.Type::get_FullName() */, L_8);
+		L_9 = VirtualFuncInvoker0< String_t* >::Invoke(32 /* System.String System.Type::get_FullName() */, L_8);
 		V_0 = L_9;
 	}
 
@@ -16593,7 +16597,7 @@ IL_0025:
 		Type_t* L_6 = __this->___type_0;
 		NullCheck(L_6);
 		FieldInfo_t* L_7;
-		L_7 = VirtualFuncInvoker2< FieldInfo_t*, String_t*, int32_t >::Invoke(86 /* System.Reflection.FieldInfo System.Type::GetField(System.String,System.Reflection.BindingFlags) */, L_6, _stringLiteralDA4BE0F963380DB493604E9CA0B0B54F040F58C9, ((int32_t)24));
+		L_7 = VirtualFuncInvoker2< FieldInfo_t*, String_t*, int32_t >::Invoke(113 /* System.Reflection.FieldInfo System.Type::GetField(System.String,System.Reflection.BindingFlags) */, L_6, _stringLiteralDA4BE0F963380DB493604E9CA0B0B54F040F58C9, ((int32_t)24));
 		V_1 = L_7;
 		FieldInfo_t* L_8 = V_1;
 		bool L_9;
@@ -16616,7 +16620,7 @@ IL_0049:
 		Type_t* L_12 = __this->___type_0;
 		NullCheck(L_12);
 		String_t* L_13;
-		L_13 = VirtualFuncInvoker0< String_t* >::Invoke(25 /* System.String System.Type::get_AssemblyQualifiedName() */, L_12);
+		L_13 = VirtualFuncInvoker0< String_t* >::Invoke(31 /* System.String System.Type::get_AssemblyQualifiedName() */, L_12);
 		Exception_t* L_14;
 		L_14 = ExceptionBuilder_INullableUDTwithoutStaticNull_m12D68CA24E4358382D62FBBCB35B7290CC3B0EAD(L_13, NULL);
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_14, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CU3Ec__DisplayClass6_0_U3CGetStaticNullForUdtTypeU3Eb__0_mA477120577648521172AF2A0786AAAA96563FA76_RuntimeMethod_var)));

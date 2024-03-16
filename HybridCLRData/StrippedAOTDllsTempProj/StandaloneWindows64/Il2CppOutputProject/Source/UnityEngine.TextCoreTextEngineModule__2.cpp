@@ -272,6 +272,8 @@ struct Vector2U5BU5D_tFEBBC94BCC6C9C88277BA04047D2B3FDB6ED7FDA;
 struct Vector3U5BU5D_tFF1859CCE176131B909E2044F76443064254679C;
 // UnityEngine.TextCore.Text.WordInfo[]
 struct WordInfoU5BU5D_tAD74C9720883D7BB229A20FFAE9EFD2CF9963F7B;
+// System.AsyncCallback
+struct AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C;
 // System.Reflection.Binder
 struct Binder_t91BFCE95A7057FADF4D8A1A342AFE52872246235;
 // UnityEngine.TextCore.Text.Character
@@ -286,6 +288,8 @@ struct FontAsset_t61A6446D934E582651044E33D250EA8D306AB958;
 struct FontFeatureTable_t992E0493CD7E9D7834DF204E0198237F0D25B3B7;
 // UnityEngine.TextCore.Glyph
 struct Glyph_t700CF8EBE04ED4AEAB520885AAA1B309E02A103F;
+// System.IAsyncResult
+struct IAsyncResult_t7B9B5A0ECB35DCEC31B8A8122C37D687369253B5;
 // UnityEngine.Material
 struct Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3;
 // UnityEngine.TextCore.Text.MaterialReferenceManager
@@ -11642,7 +11646,7 @@ IL_0263:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_89 = (L_86)->GetAt(static_cast<il2cpp_array_size_t>(L_88));
 		NullCheck(L_89);
 		int32_t L_90;
-		L_90 = VirtualFuncInvoker0< int32_t >::Invoke(4 /* System.Int32 UnityEngine.Texture::get_width() */, L_89);
+		L_90 = VirtualFuncInvoker0< int32_t >::Invoke(5 /* System.Int32 UnityEngine.Texture::get_width() */, L_89);
 		int32_t L_91 = __this->___m_AtlasWidth_26;
 		if ((!(((uint32_t)L_90) == ((uint32_t)L_91))))
 		{
@@ -11657,7 +11661,7 @@ IL_0263:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_95 = (L_92)->GetAt(static_cast<il2cpp_array_size_t>(L_94));
 		NullCheck(L_95);
 		int32_t L_96;
-		L_96 = VirtualFuncInvoker0< int32_t >::Invoke(6 /* System.Int32 UnityEngine.Texture::get_height() */, L_95);
+		L_96 = VirtualFuncInvoker0< int32_t >::Invoke(7 /* System.Int32 UnityEngine.Texture::get_height() */, L_95);
 		int32_t L_97 = __this->___m_AtlasHeight_27;
 		G_B45_0 = ((((int32_t)((((int32_t)L_96) == ((int32_t)L_97))? 1 : 0)) == ((int32_t)0))? 1 : 0);
 		goto IL_029d;
@@ -12541,7 +12545,7 @@ IL_0268:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_89 = (L_86)->GetAt(static_cast<il2cpp_array_size_t>(L_88));
 		NullCheck(L_89);
 		int32_t L_90;
-		L_90 = VirtualFuncInvoker0< int32_t >::Invoke(4 /* System.Int32 UnityEngine.Texture::get_width() */, L_89);
+		L_90 = VirtualFuncInvoker0< int32_t >::Invoke(5 /* System.Int32 UnityEngine.Texture::get_width() */, L_89);
 		int32_t L_91 = __this->___m_AtlasWidth_26;
 		if ((!(((uint32_t)L_90) == ((uint32_t)L_91))))
 		{
@@ -12556,7 +12560,7 @@ IL_0268:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_95 = (L_92)->GetAt(static_cast<il2cpp_array_size_t>(L_94));
 		NullCheck(L_95);
 		int32_t L_96;
-		L_96 = VirtualFuncInvoker0< int32_t >::Invoke(6 /* System.Int32 UnityEngine.Texture::get_height() */, L_95);
+		L_96 = VirtualFuncInvoker0< int32_t >::Invoke(7 /* System.Int32 UnityEngine.Texture::get_height() */, L_95);
 		int32_t L_97 = __this->___m_AtlasHeight_27;
 		G_B44_0 = ((((int32_t)((((int32_t)L_96) == ((int32_t)L_97))? 1 : 0)) == ((int32_t)0))? 1 : 0);
 		goto IL_02a2;
@@ -13167,7 +13171,7 @@ IL_00ed:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_43 = (L_40)->GetAt(static_cast<il2cpp_array_size_t>(L_42));
 		NullCheck(L_43);
 		bool L_44;
-		L_44 = VirtualFuncInvoker0< bool >::Invoke(8 /* System.Boolean UnityEngine.Texture::get_isReadable() */, L_43);
+		L_44 = VirtualFuncInvoker0< bool >::Invoke(11 /* System.Boolean UnityEngine.Texture::get_isReadable() */, L_43);
 		V_10 = (bool)((((int32_t)L_44) == ((int32_t)0))? 1 : 0);
 		bool L_45 = V_10;
 		if (!L_45)
@@ -13229,7 +13233,7 @@ IL_0166:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_66 = (L_63)->GetAt(static_cast<il2cpp_array_size_t>(L_65));
 		NullCheck(L_66);
 		int32_t L_67;
-		L_67 = VirtualFuncInvoker0< int32_t >::Invoke(4 /* System.Int32 UnityEngine.Texture::get_width() */, L_66);
+		L_67 = VirtualFuncInvoker0< int32_t >::Invoke(5 /* System.Int32 UnityEngine.Texture::get_width() */, L_66);
 		int32_t L_68 = __this->___m_AtlasWidth_26;
 		if ((!(((uint32_t)L_67) == ((uint32_t)L_68))))
 		{
@@ -13244,7 +13248,7 @@ IL_0166:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_72 = (L_69)->GetAt(static_cast<il2cpp_array_size_t>(L_71));
 		NullCheck(L_72);
 		int32_t L_73;
-		L_73 = VirtualFuncInvoker0< int32_t >::Invoke(6 /* System.Int32 UnityEngine.Texture::get_height() */, L_72);
+		L_73 = VirtualFuncInvoker0< int32_t >::Invoke(7 /* System.Int32 UnityEngine.Texture::get_height() */, L_72);
 		int32_t L_74 = __this->___m_AtlasHeight_27;
 		G_B23_0 = ((((int32_t)((((int32_t)L_73) == ((int32_t)L_74))? 1 : 0)) == ((int32_t)0))? 1 : 0);
 		goto IL_01a0;
@@ -14173,7 +14177,7 @@ IL_0018:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_6 = (L_3)->GetAt(static_cast<il2cpp_array_size_t>(L_5));
 		NullCheck(L_6);
 		int32_t L_7;
-		L_7 = VirtualFuncInvoker0< int32_t >::Invoke(4 /* System.Int32 UnityEngine.Texture::get_width() */, L_6);
+		L_7 = VirtualFuncInvoker0< int32_t >::Invoke(5 /* System.Int32 UnityEngine.Texture::get_width() */, L_6);
 		int32_t L_8 = __this->___m_AtlasWidth_26;
 		if ((!(((uint32_t)L_7) == ((uint32_t)L_8))))
 		{
@@ -14188,7 +14192,7 @@ IL_0018:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_12 = (L_9)->GetAt(static_cast<il2cpp_array_size_t>(L_11));
 		NullCheck(L_12);
 		int32_t L_13;
-		L_13 = VirtualFuncInvoker0< int32_t >::Invoke(6 /* System.Int32 UnityEngine.Texture::get_height() */, L_12);
+		L_13 = VirtualFuncInvoker0< int32_t >::Invoke(7 /* System.Int32 UnityEngine.Texture::get_height() */, L_12);
 		int32_t L_14 = __this->___m_AtlasHeight_27;
 		G_B5_0 = ((((int32_t)((((int32_t)L_13) == ((int32_t)L_14))? 1 : 0)) == ((int32_t)0))? 1 : 0);
 		goto IL_0052;
@@ -15054,7 +15058,7 @@ IL_0044:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_20 = V_0;
 		NullCheck(L_20);
 		bool L_21;
-		L_21 = VirtualFuncInvoker0< bool >::Invoke(8 /* System.Boolean UnityEngine.Texture::get_isReadable() */, L_20);
+		L_21 = VirtualFuncInvoker0< bool >::Invoke(11 /* System.Boolean UnityEngine.Texture::get_isReadable() */, L_20);
 		V_6 = (bool)((((int32_t)L_21) == ((int32_t)0))? 1 : 0);
 		bool L_22 = V_6;
 		if (!L_22)
@@ -15088,7 +15092,7 @@ IL_009d:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_27 = V_0;
 		NullCheck(L_27);
 		int32_t L_28;
-		L_28 = VirtualFuncInvoker0< int32_t >::Invoke(4 /* System.Int32 UnityEngine.Texture::get_width() */, L_27);
+		L_28 = VirtualFuncInvoker0< int32_t >::Invoke(5 /* System.Int32 UnityEngine.Texture::get_width() */, L_27);
 		int32_t L_29 = __this->___m_AtlasWidth_26;
 		if ((!(((uint32_t)L_28) == ((uint32_t)L_29))))
 		{
@@ -15099,7 +15103,7 @@ IL_009d:
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_30 = V_0;
 		NullCheck(L_30);
 		int32_t L_31;
-		L_31 = VirtualFuncInvoker0< int32_t >::Invoke(6 /* System.Int32 UnityEngine.Texture::get_height() */, L_30);
+		L_31 = VirtualFuncInvoker0< int32_t >::Invoke(7 /* System.Int32 UnityEngine.Texture::get_height() */, L_30);
 		int32_t L_32 = __this->___m_AtlasHeight_27;
 		G_B15_0 = ((((int32_t)((((int32_t)L_31) == ((int32_t)L_32))? 1 : 0)) == ((int32_t)0))? 1 : 0);
 		goto IL_00bf;

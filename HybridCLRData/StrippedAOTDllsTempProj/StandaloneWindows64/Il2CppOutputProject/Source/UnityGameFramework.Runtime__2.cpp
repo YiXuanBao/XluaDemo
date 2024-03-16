@@ -30789,10 +30789,10 @@ IL_001d:
 		int32_t L_11 = ___1_offset;
 		int32_t L_12 = ___2_length;
 		NullCheck(L_9);
-		VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(34 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_9, L_10, L_11, L_12);
+		VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(35 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_9, L_10, L_11, L_12);
 		// gZipOutputStream.Finish();
 		NullCheck(L_9);
-		VirtualActionInvoker0::Invoke(37 /* System.Void ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream::Finish() */, L_9);
+		VirtualActionInvoker0::Invoke(38 /* System.Void ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream::Finish() */, L_9);
 		// ProcessHeader(compressedStream);
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_13 = ___3_compressedStream;
 		DefaultCompressionHelper_ProcessHeader_m8341055DAB7F3D9CC29D8531E82672826327073B(L_13, NULL);
@@ -30906,7 +30906,7 @@ IL_0016_2:
 					ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_6 = __this->___m_CachedBytes_1;
 					int32_t L_7 = V_1;
 					NullCheck(L_5);
-					VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(34 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_5, L_6, 0, L_7);
+					VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(35 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_5, L_6, 0, L_7);
 				}
 
 IL_0024_2:
@@ -30916,7 +30916,7 @@ IL_0024_2:
 					ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_9 = __this->___m_CachedBytes_1;
 					NullCheck(L_8);
 					int32_t L_10;
-					L_10 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(31 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, L_8, L_9, 0, ((int32_t)4096));
+					L_10 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(32 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, L_8, L_9, 0, ((int32_t)4096));
 					int32_t L_11 = L_10;
 					V_1 = L_11;
 					if ((((int32_t)L_11) > ((int32_t)0)))
@@ -30928,7 +30928,7 @@ IL_0024_2:
 					// gZipOutputStream.Finish();
 					GZipOutputStream_tC4D1309665D51678585161FC08E9FD261D0E7F66* L_12 = V_0;
 					NullCheck(L_12);
-					VirtualActionInvoker0::Invoke(37 /* System.Void ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream::Finish() */, L_12);
+					VirtualActionInvoker0::Invoke(38 /* System.Void ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream::Finish() */, L_12);
 					// ProcessHeader(compressedStream);
 					Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_13 = ___1_compressedStream;
 					DefaultCompressionHelper_ProcessHeader_m8341055DAB7F3D9CC29D8531E82672826327073B(L_13, NULL);
@@ -31144,7 +31144,7 @@ IL_0034_3:
 							ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_19 = __this->___m_CachedBytes_1;
 							int32_t L_20 = V_2;
 							NullCheck(L_18);
-							VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(34 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_18, L_19, 0, L_20);
+							VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(35 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_18, L_19, 0, L_20);
 						}
 
 IL_0043_3:
@@ -31154,7 +31154,7 @@ IL_0043_3:
 							ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_22 = __this->___m_CachedBytes_1;
 							NullCheck(L_21);
 							int32_t L_23;
-							L_23 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(31 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, L_21, L_22, 0, ((int32_t)4096));
+							L_23 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(32 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, L_21, L_22, 0, ((int32_t)4096));
 							int32_t L_24 = L_23;
 							V_2 = L_24;
 							if ((((int32_t)L_24) > ((int32_t)0)))
@@ -31292,7 +31292,7 @@ IL_0016_2:
 					ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_6 = __this->___m_CachedBytes_1;
 					int32_t L_7 = V_1;
 					NullCheck(L_5);
-					VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(34 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_5, L_6, 0, L_7);
+					VirtualActionInvoker3< ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(35 /* System.Void System.IO.Stream::Write(System.Byte[],System.Int32,System.Int32) */, L_5, L_6, 0, L_7);
 				}
 
 IL_0024_2:
@@ -31302,7 +31302,7 @@ IL_0024_2:
 					ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_9 = __this->___m_CachedBytes_1;
 					NullCheck(L_8);
 					int32_t L_10;
-					L_10 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(31 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, L_8, L_9, 0, ((int32_t)4096));
+					L_10 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(32 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, L_8, L_9, 0, ((int32_t)4096));
 					int32_t L_11 = L_10;
 					V_1 = L_11;
 					if ((((int32_t)L_11) > ((int32_t)0)))
@@ -31378,19 +31378,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DefaultCompressionHelper_ProcessHeader_m
 		// compressedStream.WriteByte(25);
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_5 = ___0_compressedStream;
 		NullCheck(L_5);
-		VirtualActionInvoker1< uint8_t >::Invoke(36 /* System.Void System.IO.Stream::WriteByte(System.Byte) */, L_5, (uint8_t)((int32_t)25));
+		VirtualActionInvoker1< uint8_t >::Invoke(37 /* System.Void System.IO.Stream::WriteByte(System.Byte) */, L_5, (uint8_t)((int32_t)25));
 		// compressedStream.WriteByte(134);
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_6 = ___0_compressedStream;
 		NullCheck(L_6);
-		VirtualActionInvoker1< uint8_t >::Invoke(36 /* System.Void System.IO.Stream::WriteByte(System.Byte) */, L_6, (uint8_t)((int32_t)134));
+		VirtualActionInvoker1< uint8_t >::Invoke(37 /* System.Void System.IO.Stream::WriteByte(System.Byte) */, L_6, (uint8_t)((int32_t)134));
 		// compressedStream.WriteByte(2);
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_7 = ___0_compressedStream;
 		NullCheck(L_7);
-		VirtualActionInvoker1< uint8_t >::Invoke(36 /* System.Void System.IO.Stream::WriteByte(System.Byte) */, L_7, (uint8_t)2);
+		VirtualActionInvoker1< uint8_t >::Invoke(37 /* System.Void System.IO.Stream::WriteByte(System.Byte) */, L_7, (uint8_t)2);
 		// compressedStream.WriteByte(32);
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_8 = ___0_compressedStream;
 		NullCheck(L_8);
-		VirtualActionInvoker1< uint8_t >::Invoke(36 /* System.Void System.IO.Stream::WriteByte(System.Byte) */, L_8, (uint8_t)((int32_t)32));
+		VirtualActionInvoker1< uint8_t >::Invoke(37 /* System.Void System.IO.Stream::WriteByte(System.Byte) */, L_8, (uint8_t)((int32_t)32));
 		// compressedStream.Position = current;
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_9 = ___0_compressedStream;
 		int64_t L_10 = V_0;
