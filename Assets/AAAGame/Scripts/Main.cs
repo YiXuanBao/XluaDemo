@@ -13,6 +13,13 @@ public class Main
         {
             Object.Instantiate(aoh.Result);
         };
+
+        var handle1 = Addressables.LoadAssetAsync<GameObject>("Assets/GAssets/Launch/Res/Cube2.prefab");
+        handle1.Completed += (aoh) =>
+        {
+            Object.Instantiate(aoh.Result);
+        };
+
         Debug.Log("StartHotfixLogic");
     }
 }
